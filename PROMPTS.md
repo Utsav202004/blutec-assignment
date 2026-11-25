@@ -305,5 +305,17 @@ All tests ran against a **production build** (`next build && next start`), not t
 - **Browser check at 1440px:** home page height 11993px (same as the original), the door hallway scrolls and opens, and the console is clean.
 
 **Notes**
-- The deploy was made from the CLI, so pushing to GitHub does not redeploy yet. Running `vercel git connect` (or connecting the repo in the Vercel dashboard) turns on automatic deploys for every push, plus preview URLs for pull requests.
+- The first deploys were made from the CLI; GitHub was connected afterwards (see below).
+
+---
+
+## Prompts 10–11 — "Yes, connect it" / "done …" (2026-11-25)
+
+> Yes, connect it
+>
+> done and i have a custom domain "utsavgoyal.tech" should i use a domain like "blutec.utsavgoyal.tech" for this assignment?
+
+### Automatic deploys from GitHub
+- The first `vercel git connect` failed because Vercel's GitHub App wasn't installed on the account. Installing it grants Vercel access to your repos, so you did that step yourself, giving it access to `blutec-assignment`.
+- After that, `vercel git connect` succeeded. Every push to `main` now triggers a production deploy, and pull requests get preview URLs. This commit is the test: it was pushed to GitHub and Vercel built it automatically.
 
