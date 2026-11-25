@@ -6,6 +6,13 @@
 @import "./styles/mascot.css";
 @import "./styles/hero.css";
 @import "./styles/meet.css";
+@import "./styles/paths.css";
+@import "./styles/journey.css";
+@import "./styles/passport.css";
+@import "./styles/dusk.css";
+@import "./styles/night.css";
+@import "./styles/home-door.css";
+@import "./styles/curtain.css";
 
 /*
  * Design tokens — copied from the reference site's compiled CSS so colours,

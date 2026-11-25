@@ -85,3 +85,42 @@ Full checklist: [ANALYSIS.md](ANALYSIS.md)
 - **A CSS file was silently dropped.** My keyframe de-duplication left a stray `}` in `meet.css`, so Tailwind discarded the whole file without a dev-server error. Found it by compiling each CSS file on its own with the Tailwind CLI. I now validate every stylesheet that way.
 - **Testing a scroll-driven layout in a background browser tab.** `scroll-behavior: smooth` plus a hidden pane meant scroll positions never settled. Tests now use `behavior: 'instant'`. The hallway updates directly in the scroll handler (no `requestAnimationFrame`), so it never lags.
 - **Mobile hero Teddy was hidden.** The original hides mascot stops below 768px unless they carry `data-lane`. Added a `lane` prop.
+
+---
+
+## Prompt 4 — "Yes, continue" (2026-11-25)
+
+> Yes, continue
+
+### Phase 3 (part 2) — Rest of the home page + page curtain
+**What was built**
+- `TwoWays` (signpost, showroom window, plane flying Korea → Dubai)
+- `Journey` (steps + WhatsApp phone mock-up)
+- `Passport` (open passport book with stamps, sunset skyline)
+- `HappyFamilies` (brick facade at dusk, photo wall, street lamp)
+- `FaqTeaser` (night sky Q&A)
+- `WelcomeHome` (front door CTA)
+- `components/layout/PageCurtain.tsx`: the quilt "curtain" that drops while Teddy runs across, on first load and on every page change.
+- `components/ui/ScrollReveal.tsx`: a generic scroll-in reveal driven by `data-reveal` / `data-armed` / `data-revealed` attributes.
+
+**Key decisions**
+- **A section generator instead of hand-typing ~120KB of markup.** `gen_section.py` (scratchpad tool) takes a server-rendered section of the original and outputs a React component:
+  - Teddy blocks become `<Teddy pose=… />`;
+  - `<img>` becomes `next/image` with the local file, focal point and placeholder colour;
+  - internal `<a>` becomes `<Link>`;
+  - WhatsApp/phone links become `whatsappLink()` / `site.phoneHref`.
+
+  I then hand-edited each output to add behaviour. A companion script ports each section's CSS **plus every `@keyframes` it references**, de-duplicates them and validates the file with the Tailwind CLI.
+- **Journey interactivity rebuilt in React.** An `IntersectionObserver` with a thin band in the middle of the viewport (`rootMargin: -45% 0px -45% 0px`) decides the active step. When a new step is reached, a "typing…" indicator shows for 650ms, then that step's messages pop in. The showroom video has a working play/pause button.
+- **Reveal attributes, not wrapper components.** `ScrollReveal` renders nothing. It sets `data-armed` on mount (so the content stays visible without JS) and `data-revealed` on scroll, which is exactly what the original's CSS keys off.
+- **The curtain covers before navigating.** A capture-phase click listener intercepts internal links to *other pages*: cover (300ms), then `router.push()`, then lift once the new pathname renders. Query-only changes (e.g. `/puppies?breed=…` filters) and `#hash` links skip the curtain. It's server-rendered, so the intro covers the very first paint, like the original.
+
+**Verification**
+- **Desktop 1440px:** every home section's top offset and height matches the original within 1px (e.g. Journey 6133/1697, Passport 7830/922, Front door 10972/1021).
+- **Mobile 375px:** all 8 section heights and the footer height are identical to the original (748, 3036, 1281, 1516, 1258, 1695, 954, 967, footer 1303).
+- Side-by-side screenshots of each section match the original.
+
+**Challenges**
+- **Turbopack doesn't pick up newly added `@import`s in `globals.css`.** The sections rendered unstyled (Passport was 6795px tall instead of 922px). The standalone Tailwind build was correct, so the dev server needed a restart. Worth knowing for anyone working on the repo.
+- **ESLint caught issues in the copied content:** unescaped apostrophes in copy, and a `setState` called synchronously inside an effect. Fixed with `&apos;` and timer-based state updates.
+- **A first curtain version used `useSearchParams`,** which (with `cacheComponents`) forces a Suspense boundary, so the intro wouldn't be in the server HTML. Switched to tracking `pathname` only, and filters deliberately skip the curtain.

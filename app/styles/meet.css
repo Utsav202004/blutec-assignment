@@ -350,7 +350,6 @@
   }
 }
 
-
 @keyframes tp-tag-swing {
   0% {
     rotate: calc(-7deg * var(--swing, 1));
