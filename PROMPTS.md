@@ -319,3 +319,16 @@ All tests ran against a **production build** (`next build && next start`), not t
 - The first `vercel git connect` failed because Vercel's GitHub App wasn't installed on the account. Installing it grants Vercel access to your repos, so you did that step yourself, giving it access to `blutec-assignment`.
 - After that, `vercel git connect` succeeded. Every push to `main` now triggers a production deploy, and pull requests get preview URLs. This commit is the test: it was pushed to GitHub and Vercel built it automatically.
 
+### Custom domain: blutec.utsavgoyal.tech
+**Why a subdomain:** the root `utsavgoyal.tech` stays free for a portfolio, the reviewer gets a personal, professional URL, HTTPS is automatic, and the `vercel.app` address still works as a fallback.
+
+**Steps**
+1. `vercel domains add blutec.utsavgoyal.tech blutec-assignment`. The root domain was already on your Vercel account, so ownership didn't need re-verifying.
+2. DNS for `utsavgoyal.tech` is hosted at the registrar (`orderbox-dns.com` nameservers), not at Vercel, so you added the record yourself: `CNAME blutec → 41b6fcc2c69bf7ca.vercel-dns-017.com` (the project-specific target Vercel recommended).
+3. Checked propagation against the authoritative nameserver and against public resolvers (1.1.1.1, 8.8.8.8). Vercel then reported "configured correctly" and issued a Let's Encrypt certificate (valid until Feb 2027).
+4. `vercel env update NEXT_PUBLIC_SITE_URL` changed the value to `https://blutec.utsavgoyal.tech`, then the README was updated and pushed (auto-deployed).
+
+**Challenges**
+- **This Mac's resolver had cached a "not found" answer** from before the record existed, so local `curl` failed while public DNS was already correct. I tested HTTPS by pinning a Vercel IP (`curl --resolve`) instead of waiting for the cache to expire.
+- **The Vercel CLI refuses `env rm` without the user's explicit approval** (even with `--yes`), treating it as destructive. `vercel env update` changes the value in place, so nothing needed deleting.
+

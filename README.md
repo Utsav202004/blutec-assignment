@@ -4,7 +4,7 @@ A pixel-accurate clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/
 
 The original is an illustrated, animation-heavy puppy shop: the home page tells a "morning to night" story as you scroll, with a mascot (Teddy), a sideways-scrolling hallway of doors, a WhatsApp phone mock-up, a passport book and more. This clone reproduces its design, layout, responsiveness and behaviour across all 55 pages.
 
-**Live site:** https://blutec-assignment.vercel.app  
+**Live site:** https://blutec.utsavgoyal.tech (also at https://blutec-assignment.vercel.app)  
 **Repository:** https://github.com/Utsav202004/blutec-assignment
 
 > The full build log (every prompt, decision and challenge) is in [PROMPTS.md](PROMPTS.md). The initial site audit is in [ANALYSIS.md](ANALYSIS.md).
@@ -111,6 +111,8 @@ npm run lint    # ESLint
 > Tip: if you add a new `@import` to `app/globals.css` while `npm run dev` is running, restart the dev server. Turbopack doesn't always pick up newly imported files. If a production build ever shows stale CSS, delete `.next` and rebuild.
 
 ## Deployment (Vercel)
+
+This project is deployed on Vercel with the GitHub repo connected: every push to `main` redeploys production automatically, and pull requests get preview URLs. The custom domain `blutec.utsavgoyal.tech` points to it via a CNAME record.
 
 **Option A: from GitHub (recommended)**
 
