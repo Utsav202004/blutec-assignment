@@ -44,14 +44,18 @@ export function SiteHeader() {
       className="tp-header fixed inset-x-0 top-0 z-50"
     >
       <div className="tp-header__bar gutter">
-        <Link className="tp-header__brand" aria-label={`${site.name} — home`} href="/">
+        <Link
+          className="tp-header__brand"
+          aria-label={`${site.name} — home`}
+          href="/"
+        >
           <Image
             src="/assets/brand/logo.png"
             alt=""
             width={56}
             height={56}
             className="tp-header__logo"
-            priority
+            loading="eager"
           />
           <span className="font-plush tp-header__name">{site.shortName}</span>
         </Link>
@@ -91,10 +95,24 @@ export function SiteHeader() {
       </div>
 
       {/* Scalloped "hem" under the header, shown once it has a background */}
-      <svg aria-hidden="true" className="tp-header__hem" width="100%" height="14" preserveAspectRatio="none">
+      <svg
+        aria-hidden="true"
+        className="tp-header__hem"
+        width="100%"
+        height="14"
+        preserveAspectRatio="none"
+      >
         <defs>
-          <pattern id="tp-hem" width="44" height="14" patternUnits="userSpaceOnUse">
-            <path d="M0 0H44V2A22 11 0 0 1 0 2Z" className="tp-header__hem-fill" />
+          <pattern
+            id="tp-hem"
+            width="44"
+            height="14"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M0 0H44V2A22 11 0 0 1 0 2Z"
+              className="tp-header__hem-fill"
+            />
             <path d="M0 2A22 11 0 0 0 44 2" className="tp-header__hem-line" />
           </pattern>
         </defs>

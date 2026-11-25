@@ -65,7 +65,8 @@
   --bar-h: 0px;
 }
 
-@media (max-width: 1023px) {
+/* Phones: shorter header + room for the sticky WhatsApp bar (same breakpoint as the reference) */
+@media (max-width: 767px) {
   :root {
     --header-h: 4rem;
     --bar-h: calc(4rem + env(safe-area-inset-bottom));

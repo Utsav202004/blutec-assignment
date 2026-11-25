@@ -51,8 +51,13 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
     let range = 0; // vertical scroll needed for that travel
 
     const measure = () => {
+      // Snap door width to whole pixels (as the reference does via --door-w)
+      // so the hallway length — and the section height — match exactly.
+      section.style.removeProperty("--door-w");
+      const door = track.querySelector<HTMLElement>(".tp-door");
+      if (door) section.style.setProperty("--door-w", `${Math.round(door.getBoundingClientRect().width)}px`);
       distance = Math.max(0, track.scrollWidth - window.innerWidth);
-      range = distance / SPEED;
+      range = Math.round(distance / SPEED); // the reference rounds this too
       wrap.style.height = `calc(${range}px + 100vh)`;
       apply();
     };
@@ -83,6 +88,7 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
       window.removeEventListener("resize", measure);
       wrap.style.height = "";
       track.style.transform = "";
+      section.style.removeProperty("--door-w");
     };
   }, [pinned]);
 

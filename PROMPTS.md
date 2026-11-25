@@ -221,3 +221,46 @@ Full checklist: [ANALYSIS.md](ANALYSIS.md)
 **Challenges**
 - **Gone home was 104px shorter.** The ticket's route label isn't always "TeddyPups": showroom puppies say "Dubai showroom", which wraps to two lines. Found it by comparing ticket heights one by one against the original.
 - **The viewer left page scroll locked after closing.** The unlock relied on the dialog's asynchronous `close` event. Esc is now handled through the synchronous `cancel` event, and scroll is unlocked whenever the viewer's state is closed. The same fix went into the puppy gallery.
+
+---
+
+## Prompt 7 — "phase 5" (2026-11-25)
+
+> phase 5
+
+### Phase 5 — Testing (responsiveness, Lighthouse, console)
+All tests ran against a **production build** (`next build && next start`), not the dev server.
+
+**Responsiveness at 375 / 768 / 1024 / 1440px**
+- For every main route I measured the `<main>` height at each width, on the clone and on the original, and checked that the page never scrolls sideways (`scrollWidth ≤ viewport`). There is no horizontal overflow anywhere.
+- **Two real bugs found by the comparison:**
+  1. **At 768px every inner page was exactly 12px shorter.** 12px = 4.75rem − 4rem, the header height. I had applied the phone header height below 1024px, but the original switches at **767px**. Fixed in `globals.css`.
+  2. **The home page was 6px short at 1024px.** The original's script rounds each door to a whole pixel width (`--door-w: 154px`, where the CSS clamp gives 153.59px) and rounds the pinned scroll range. With both rounded in `MeetThePups.tsx`, the hallway length and section height now match.
+- **After the fixes,** all 7 routes are identical to the original at 768 and 1024px, as they already were at 375 and 1440px.
+
+**Lighthouse** (v13, scripted with a warm-up run so on-demand image optimisation isn't measured)
+
+| Page | Mobile perf | Desktop perf | Accessibility | Best practices | SEO |
+|---|---|---|---|---|---|
+| Home | 100 | 100 | 100 | 100 | 100 |
+| Puppies | 98 | 100 | 100 | 100 | 100 |
+| Puppy detail (available / gone home) | 85 (simulated) · 98 (real throttling) | 99 | 100 | 100 | 100 |
+| How it works / Happy families / Gone home / FAQ / Contact | 100 | 100 | 100 | 100 | 100 |
+
+**Fixes made from the audits**
+- **Layout shift on puppy pages (CLS 0.17 → 0).** The content was streaming into a Suspense placeholder after first paint and pushing the footer down. Every slug is prerendered, so the page now uses Next 16's documented `export const instant = false` and renders as plain static HTML.
+- **The LCP image wasn't high priority.** Next 16 deprecated `priority`, so I switched to `loading="eager"` + `fetchPriority="high"`, per the bundled Image docs.
+- **Two full-size images (~240 KB each) bypassed the optimiser:** a video poster and an SVG `<image>`. Both now point at resized `/_next/image` variants.
+- **Stopped preloading the handwriting font.** Shantell Sans with its variable axes is 171 KB and only used for small accents, yet it was preloaded ahead of the photos and heading font. `preload: false` keeps `display: swap` while removing it from the critical path.
+- **Puppy-page LCP, investigated properly:** the real LCP is 93 ms locally, and the photo is preloaded at high priority and finishes almost immediately. The 4.4 s figure comes from Lighthouse's *simulated* slow-4G model. Re-running with real (DevTools) throttling gives performance 98 and LCP 1.8 s.
+- **An early run showed 3.1 s of blocking time on home.** It was a cold-start outlier (first image optimisation and a cold Chrome). Warm runs show 10–30 ms, so the script now always warms each page up first.
+
+**Console errors**
+- Lighthouse's `errors-in-console` audit passes with 0 errors on all 14 runs (8 page types, mobile + desktop).
+- A fresh browser load of the home page has an empty console.
+- I clicked through filters, gallery, viewer, tabs, FAQ and the contact form without errors.
+
+**Challenges**
+- **Stale production CSS.** After changing `globals.css`, a normal `next build` still shipped the old media query: Turbopack's build cache had kept the old CSS. Deleting `.next` fixed it, so every measured build after that was a clean build.
+- **The browser cache made old builds look current.** The browser pane kept serving cached HTML from earlier builds, which produced misleading "preloaded but not used" warnings for files that no longer existed. A cache-busting query string gave a clean read.
+- **Sharing the browser with the user.** You were using the preview pane during testing, so I moved my checks to background tabs and finished the last ones headlessly with Lighthouse.

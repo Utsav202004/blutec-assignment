@@ -27,6 +27,9 @@ const shantell = Shantell_Sans({
   variable: "--font-shantell",
   axes: ["BNCE", "INFM"], // bounce + informality for the handwritten look
   display: "swap",
+  // 171 KB with its axes and only used for small accents: don't preload it,
+  // so it doesn't compete with the LCP image and heading font on slow networks
+  preload: false,
 });
 
 export const metadata: Metadata = {

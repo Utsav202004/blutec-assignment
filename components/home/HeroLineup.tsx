@@ -5,10 +5,22 @@ import Link from "next/link";
 import { useState, type CSSProperties } from "react";
 import { focal, type Puppy } from "@/lib/puppies";
 
-export type Seat = { puppy: Puppy; x: string; w: string; peek: number; tilt: string };
+export type Seat = {
+  puppy: Puppy;
+  x: string;
+  w: string;
+  peek: number;
+  tilt: string;
+};
 
 const seatStyle = (s: Seat, i: number) =>
-  ({ "--x": s.x, "--w": s.w, "--peek": s.peek, "--tilt": s.tilt, "--i": i }) as CSSProperties;
+  ({
+    "--x": s.x,
+    "--w": s.w,
+    "--peek": s.peek,
+    "--tilt": s.tilt,
+    "--i": i,
+  }) as CSSProperties;
 
 /**
  * Arched photo "windows" peeking over the quilt. Hovering/focusing one lifts
@@ -20,9 +32,16 @@ export function HeroLineup({ seats }: { seats: Seat[] }) {
 
   return (
     <>
-      <ul className="tp-lineup" aria-label="Some of the puppies in our showroom">
+      <ul
+        className="tp-lineup"
+        aria-label="Some of the puppies in our showroom"
+      >
         {seats.map((s, i) => (
-          <li key={s.puppy.slug} className="tp-lineup__seat" style={seatStyle(s, i)}>
+          <li
+            key={s.puppy.slug}
+            className="tp-lineup__seat"
+            style={seatStyle(s, i)}
+          >
             <Link
               className="tp-lineup__pup"
               href={`/puppies/${s.puppy.slug}`}
@@ -38,10 +57,15 @@ export function HeroLineup({ seats }: { seats: Seat[] }) {
                   alt={s.puppy.cover.alt}
                   fill
                   sizes="11rem"
-                  priority={i < 2}
+                  loading={i < 2 ? "eager" : undefined}
+                  fetchPriority={i < 2 ? "high" : undefined}
                   placeholder={s.puppy.cover.blurDataUrl ? "blur" : "empty"}
                   blurDataURL={s.puppy.cover.blurDataUrl}
-                  style={{ objectFit: "cover", objectPosition: focal(s.puppy.cover), backgroundColor: s.puppy.cover.color }}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: focal(s.puppy.cover),
+                    backgroundColor: s.puppy.cover.color,
+                  }}
                 />
               </span>
             </Link>
@@ -50,9 +74,18 @@ export function HeroLineup({ seats }: { seats: Seat[] }) {
       </ul>
       <ul aria-hidden="true" className="tp-lineup tp-lineup--tags">
         {seats.map((s, i) => (
-          <li key={s.puppy.slug} className="tp-lineup__seat" style={seatStyle(s, i)}>
-            <span className="tp-lineup__ghost" data-tag={active === i ? "show" : undefined}>
-              <span className="tp-lineup__name font-scrawl">{s.puppy.displayName}</span>
+          <li
+            key={s.puppy.slug}
+            className="tp-lineup__seat"
+            style={seatStyle(s, i)}
+          >
+            <span
+              className="tp-lineup__ghost"
+              data-tag={active === i ? "show" : undefined}
+            >
+              <span className="tp-lineup__name font-scrawl">
+                {s.puppy.displayName}
+              </span>
             </span>
           </li>
         ))}

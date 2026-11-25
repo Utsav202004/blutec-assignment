@@ -142,7 +142,8 @@ export function SketchCard({
                 ? "9rem"
                 : "(min-width: 1536px) 17rem, (min-width: 1024px) 22vw, (min-width: 640px) 30vw, 46vw"
             }
-            priority={priority}
+            loading={priority ? "eager" : undefined}
+            fetchPriority={priority ? "high" : undefined}
             placeholder={puppy.cover.blurDataUrl ? "blur" : "empty"}
             blurDataURL={puppy.cover.blurDataUrl}
             style={{

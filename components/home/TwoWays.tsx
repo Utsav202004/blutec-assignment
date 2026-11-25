@@ -132,7 +132,7 @@ export function TwoWays() {
                     </g>
                     <g transform="translate(10 2)">
                       <image
-                        href="/assets/media/gAaGwoGej2g6.jpg"
+                        href="/_next/image?url=%2Fassets%2Fmedia%2FgAaGwoGej2g6.jpg&w=128&q=75"
                         x="-25"
                         y="-25"
                         width="50"

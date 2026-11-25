@@ -250,7 +250,7 @@ export function Journey() {
                   <div className="tp-clip">
                     <video
                       src="/assets/media/dSAUmXs8Qai9.mp4"
-                      poster="/assets/media/FHyoHcIosLZE.jpg"
+                      poster="/_next/image?url=%2Fassets%2Fmedia%2FFHyoHcIosLZE.jpg&w=384&q=75"
                       ref={videoRef}
                       muted
                       loop

@@ -114,7 +114,9 @@ export function PuppyGallery({
             alt={s.alt}
             fill
             sizes="(min-width: 1024px) 55vw, 92vw"
-            priority={at === 0}
+            // The first photo is the page's LCP element
+            loading={turned ? undefined : "eager"}
+            fetchPriority={turned ? undefined : "high"}
             placeholder={s.blurDataUrl ? "blur" : "empty"}
             blurDataURL={s.blurDataUrl}
             style={{

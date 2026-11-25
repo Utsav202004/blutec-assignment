@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { focal, getPuppy, puppies, siblings, whereLabel } from "@/lib/puppies";
 import { whatsappLink } from "@/lib/site";
 import { PawIcon } from "@/components/ui/PawIcon";
@@ -86,24 +85,19 @@ function Chapter({ n, children }: { n: number; children: React.ReactNode }) {
 }
 
 /**
- * Reading `params` happens inside a Suspense boundary (Next 16 "instant"
- * navigation): the shell renders immediately and the puppy streams in.
- * Every slug is prerendered by generateStaticParams, so in practice the
- * content is already static HTML. Same structure as the reference.
+ * Every slug is prerendered by generateStaticParams, so reading `params` at
+ * the top level is fine: opting this segment out of Next 16's "instant
+ * navigation" check lets the page render as plain static HTML instead of
+ * streaming into a placeholder (which caused a layout shift on load).
  */
-export default function PuppyPage({ params }: PageProps<"/puppies/[slug]">) {
+export const instant = false;
+
+export default async function PuppyPage({
+  params,
+}: PageProps<"/puppies/[slug]">) {
   return (
     <div data-page="pup" className="tp-page">
-      <Suspense
-        fallback={
-          <div
-            className="gutter mx-auto min-h-[80vh] max-w-[110rem] pt-16"
-            aria-busy="true"
-          />
-        }
-      >
-        <PuppyContent params={params} />
-      </Suspense>
+      <PuppyContent params={params} />
     </div>
   );
 }
