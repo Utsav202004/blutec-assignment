@@ -13,6 +13,8 @@
 @import "./styles/night.css";
 @import "./styles/home-door.css";
 @import "./styles/curtain.css";
+@import "./styles/puppies.css";
+@import "./styles/puppy-detail.css";
 
 /*
  * Design tokens — copied from the reference site's compiled CSS so colours,

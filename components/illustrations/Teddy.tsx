@@ -14,6 +14,8 @@ type TeddyProps = {
   greet?: boolean;
   /** Keep this Teddy visible on phones (others are hidden below 768px) */
   lane?: boolean;
+  /** Mirror Teddy so he faces left */
+  facing?: "left" | "right";
 };
 
 /**
@@ -21,7 +23,15 @@ type TeddyProps = {
  * these "stops" with a JS rig; here each stop renders its own static pose with
  * CSS idle animations, and tapping Teddy pops a speech bubble.
  */
-export function Teddy({ pose, className = "", label, bubble, greet, lane }: TeddyProps) {
+export function Teddy({
+  pose,
+  className = "",
+  label,
+  bubble,
+  greet,
+  lane,
+  facing = "right",
+}: TeddyProps) {
   const [show, setShow] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -47,13 +57,13 @@ export function Teddy({ pose, className = "", label, bubble, greet, lane }: Tedd
   return (
     <div
       data-pose={pose}
-      data-facing="right"
+      data-facing={facing}
       data-lane={lane ? "true" : undefined}
       className={`pup-stop ${className}`}
     >
       <div
         className="pup-buddy"
-        data-facing="right"
+        data-facing={facing}
         data-live={bubble ? "" : undefined}
         onClick={() => say()}
       >
@@ -64,7 +74,11 @@ export function Teddy({ pose, className = "", label, bubble, greet, lane }: Tedd
           aria-label={label}
           focusable="false"
         >
-          {teddyPoses[pose]}
+          {facing === "left" ? (
+            <g transform="translate(300 0) scale(-1 1)">{teddyPoses[pose]}</g>
+          ) : (
+            teddyPoses[pose]
+          )}
         </svg>
         {bubble && (
           <span aria-hidden="true" className="pup-bubble" data-show={show}>

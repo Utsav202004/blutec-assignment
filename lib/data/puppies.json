@@ -1137,5 +1137,1586 @@
         "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAQCdASoJABAAA4BaJYwCdADZvJrGYAD+5sWTzFn3zUDoTXdlMTQlFZ8rTyJU8bwUxmD5DzMIZLvxDXQiWUf9+RPVwcj+enxrvwDJ/X7OF2dnSbsVAAAA"
       }
     ]
+  },
+  {
+    "slug": "pomeranian-ace-boy",
+    "name": "Ace",
+    "displayName": "Ace",
+    "breed": "Pomeranian",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/mihUKGFCatU3.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Ace, male Pomeranian puppy",
+      "focalX": 0.528,
+      "focalY": 0.462,
+      "color": "#f8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAkAA4BaJZgCdAD6lyxnE5gA/vUdfS3S9llTf7T8WWOlpR6zFXZaZPzkUnjJ7ITUwl1NqvAS7LI6ezVgAAAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/mihUKGFCatU3.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Ace, male Pomeranian puppy",
+        "focalX": 0.528,
+        "focalY": 0.462,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAkAA4BaJZgCdAD6lyxnE5gA/vUdfS3S9llTf7T8WWOlpR6zFXZaZPzkUnjJ7ITUwl1NqvAS7LI6ezVgAAAA"
+      },
+      {
+        "src": "/assets/media/0mLBLYUEZO0F.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Ace, male Pomeranian puppy, photo 2",
+        "focalX": 0.494,
+        "focalY": 0.416,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAQCdASoQAAkAA4BaJZgCdAERGFCzVPAA/ZAg5yBrg3beDD2PZq2puFTomAx9p80yPdOm/gDD3yMz+wwB5SUkLELCODeZxjx9NQSuAAA="
+      },
+      {
+        "src": "/assets/media/_JEM2zK5kB78.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Ace, male Pomeranian puppy, photo 3",
+        "focalX": 0.464,
+        "focalY": 0.423,
+        "color": "#e8d8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAQAgCdASoQAAkAA4BaJbACdAERC97z9UVAAP7uI+un45+fSk9gsI1N0N99amYL2tTVT2zXFEUacwaVm7Ysi6FxgjVc0nl0myMw3B7AHAAAAA=="
+      },
+      {
+        "src": "/assets/media/gTucfeDbLs-F.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Ace, male Pomeranian puppy, photo 4",
+        "focalX": 0.452,
+        "focalY": 0.374,
+        "color": "#e8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADQAQCdASoQAAkAA4BaJbACdADJma+oAAD+4MWUzZqnKfmVQ5WI6jz/FHa1RlOJk4RqiTQsQZa+tBaE3/oQDiGt/FSi0NKeDp38CzX8d7PdSeNXA3gBrO8Yru8b4UAA"
+      }
+    ]
+  },
+  {
+    "slug": "poodle-leo-male",
+    "name": "Leo",
+    "displayName": "Leo",
+    "breed": "Poodle",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/QgFG5s09n-ss.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Leo, male Poodle puppy",
+      "focalX": 0.521,
+      "focalY": 0.38,
+      "color": "#f8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJZgCdAEXVjodqVdAAP7wtIqbFluAYdHhD47cmAqK76S/Bnqg9Z1MqGnh/niEYPv+MJYECz55I0qsZs3/xQUBrihy8vGOvdSWkDJgOq0AAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/QgFG5s09n-ss.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Poodle puppy",
+        "focalX": 0.521,
+        "focalY": 0.38,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJZgCdAEXVjodqVdAAP7wtIqbFluAYdHhD47cmAqK76S/Bnqg9Z1MqGnh/niEYPv+MJYECz55I0qsZs3/xQUBrihy8vGOvdSWkDJgOq0AAA=="
+      },
+      {
+        "src": "/assets/media/F8zqSF5XZxAk.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Poodle puppy, photo 2",
+        "focalX": 0.532,
+        "focalY": 0.375,
+        "color": "#c89888",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACwAQCdASoQAAkAA4BaJZACdACUMFZgAMyR1R4s93IwCeBuAXPczFUolxyOmQpsuq+9Qfm0kYPURp4m3529ovOuyc31siYf0ctQ4BX6B8zymt5EgHHb3LxoAAA="
+      },
+      {
+        "src": "/assets/media/HQOMaqO-G9hC.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Poodle puppy, photo 3",
+        "focalX": 0.494,
+        "focalY": 0.428,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADQAQCdASoQAAkAA4BaJbACdADD0uTRgAD+8EHuf4Aja/0jeR1NcjzTvyRPVP/UF+H/UrNkPB0bbdpTYDf4/3qjCrPBAv5887t4X8N+IZXs1pJ2qSQOJWldS+EAAA=="
+      },
+      {
+        "src": "/assets/media/Nsj42jGLv1Oj.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Poodle puppy, photo 4",
+        "focalX": 0.548,
+        "focalY": 0.38,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQAAkAA4BaJZgCdADwPVsWpYAA/sqvL+r5HmODHf4XZc1iqCk94XOQsinDbmM8L4DDmNxXfyvkH640YewWHuopPdOW47E2LXhEKWm8KVXnfAQAAAA="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-mia-girl",
+    "name": "Mia",
+    "displayName": "Mia",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/4vu6_PGfL64H.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Sadie, female Maltipoo puppy, photo 4",
+      "focalX": 0.503,
+      "focalY": 0.432,
+      "color": "#b88878",
+      "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAQCdASoQAAkAA4BaJbACdADiJCiW4AD+lpt5p9Duc4NMoGn9XK40o98AD/7wHRG88MZtD4aW3WHfS244vZPz6RB8j+03IlrB88jbfBszWzgQAAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/4vu6_PGfL64H.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sadie, female Maltipoo puppy, photo 4",
+        "focalX": 0.503,
+        "focalY": 0.432,
+        "color": "#b88878",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAQCdASoQAAkAA4BaJbACdADiJCiW4AD+lpt5p9Duc4NMoGn9XK40o98AD/7wHRG88MZtD4aW3WHfS244vZPz6RB8j+03IlrB88jbfBszWzgQAAA="
+      },
+      {
+        "src": "/assets/media/cJ3YobQIt64F.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mia, female Maltipoo puppy, photo 2",
+        "focalX": 0.588,
+        "focalY": 0.361,
+        "color": "#a87848",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQAAkAA4BaJbACdLoAAzdMh9W1AAD43XPwYEB802XwMiF9y5QKkO0BWRpBN1ex0kf/7AeMz5MScVTu+WSs5tHkxVpegsPRhYZwBoUtYsPvSfOKfQAAAA=="
+      },
+      {
+        "src": "/assets/media/QXBQG6XQyPHY.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mia, female Maltipoo puppy, photo 3",
+        "focalX": 0.606,
+        "focalY": 0.38,
+        "color": "#f8e8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoQAAkAA4BaJbACdADpLOoKwAD+8jiqsKi5ABzH1RMoGf/H1L1JKMA3FZQyfzp922uxa/4lSV5GHFTZezgUOeX0eL684xWDXyXxKgAA"
+      },
+      {
+        "src": "/assets/media/-OqPQNWP1dg2.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mia, female Maltipoo puppy, photo 4",
+        "focalX": 0.477,
+        "focalY": 0.378,
+        "color": "#383848",
+        "blurDataUrl": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAADQAQCdASoQAAkAA4BaJbACdADRkfjjIAD+yqapVWBn7/ea0YCs76CoIR+cW6QaaWzhmnEJUfIOpvWbOCLXimbR8Dsnct1ZvHU5Y08ut9N6nmMI6TvWn79szq48CIrejnlKtEUsAAA="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-sadie-girl",
+    "name": "Sadie",
+    "displayName": "Sadie",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/159oT4F46uhk.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Sadie, female Maltipoo puppy",
+      "focalX": 0.479,
+      "focalY": 0.418,
+      "color": "#f8d8d8",
+      "blurDataUrl": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwAgCdASoQAAkAA4BaJbACdAYtzqhfulpWAAD+68DyKTC7PKvhvJL2N/+DD4Ufjbf+JtjVXhYpn1xzv8eIDJINbPOUJnSSy/tRuppotA3AR+33CBn1xy3W+Jbfhj4SR/m/ZL5LAAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/159oT4F46uhk.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sadie, female Maltipoo puppy",
+        "focalX": 0.479,
+        "focalY": 0.418,
+        "color": "#f8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwAgCdASoQAAkAA4BaJbACdAYtzqhfulpWAAD+68DyKTC7PKvhvJL2N/+DD4Ufjbf+JtjVXhYpn1xzv8eIDJINbPOUJnSSy/tRuppotA3AR+33CBn1xy3W+Jbfhj4SR/m/ZL5LAAA="
+      },
+      {
+        "src": "/assets/media/GTf7_pB5IENu.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sadie, female Maltipoo puppy, photo 2",
+        "focalX": 0.535,
+        "focalY": 0.375,
+        "color": "#f8e8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAwAgCdASoQAAkAA4BaJaACdAEXu3eiMD+JIAD+9N7tTmsuLHB8D9cO/eKEEupZZZQegBF/AVl3zotCiZjMRliv5ODdcbEkOeKpbUaIYBIYhrEp9AA="
+      },
+      {
+        "src": "/assets/media/HqzIOWZpu8an.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sadie, female Maltipoo puppy, photo 3",
+        "focalX": 0.424,
+        "focalY": 0.37,
+        "color": "#986858",
+        "blurDataUrl": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAQCdASoQAAkAA4BaJbACdADweKRkLlAA/vBzdaysSgKwLxLYXGOuNWykM4K6cHr2YqTljFqGrzX+n2Ic1qE8j3Fd3lP6utfYhsIAAAA="
+      },
+      {
+        "src": "/assets/media/4vu6_PGfL64H.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sadie, female Maltipoo puppy, photo 4",
+        "focalX": 0.503,
+        "focalY": 0.432,
+        "color": "#b88878",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADQAQCdASoQAAkAA4BaJbACdADiJCiW4AD+lpt5p9Duc4NMoGn9XK40o98AD/7wHRG88MZtD4aW3WHfS244vZPz6RB8j+03IlrB88jbfBszWzgQAAA="
+      }
+    ]
+  },
+  {
+    "slug": "blue-marle-pomeranian",
+    "name": "Pomeranian",
+    "displayName": "Pomeranian",
+    "breed": "Pomeranian",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/bMSEHnYcBTFF.avif",
+      "kind": "image",
+      "width": 980,
+      "height": 551,
+      "alt": "Male Pomeranian puppy",
+      "focalX": 0.523,
+      "focalY": 0.516,
+      "color": "#887878",
+      "blurDataUrl": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAQCdASoQAAkAA4BaJQBOgCP30bbr0AD+fnoCm/t3HZ1Ad98wqwTTxks3g4s4WrLbC+KMi/kqx8QRBJRxhwxDc9cIAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/bMSEHnYcBTFF.avif",
+        "kind": "image",
+        "width": 980,
+        "height": 551,
+        "alt": "Male Pomeranian puppy",
+        "focalX": 0.523,
+        "focalY": 0.516,
+        "color": "#887878",
+        "blurDataUrl": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAQCdASoQAAkAA4BaJQBOgCP30bbr0AD+fnoCm/t3HZ1Ad98wqwTTxks3g4s4WrLbC+KMi/kqx8QRBJRxhwxDc9cIAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomsky-ollie-boy",
+    "name": "Ollie",
+    "displayName": "Ollie",
+    "breed": "Pomsky",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/Qs2IHRk7OQIm.avif",
+      "kind": "image",
+      "width": 680,
+      "height": 382,
+      "alt": "Ollie, male Pomsky puppy",
+      "focalX": 0.532,
+      "focalY": 0.381,
+      "color": "#b8c888",
+      "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJZACdADPmIBnAnQAAP7hb8AsMlKDhcVjo4mfyMqec4F3Fmthyk+FSBtL6k8Lmxgtp9kNQ4NLFTOnAk43WqM30kixlujJE5LyPouctAAAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/Qs2IHRk7OQIm.avif",
+        "kind": "image",
+        "width": 680,
+        "height": 382,
+        "alt": "Ollie, male Pomsky puppy",
+        "focalX": 0.532,
+        "focalY": 0.381,
+        "color": "#b8c888",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJZACdADPmIBnAnQAAP7hb8AsMlKDhcVjo4mfyMqec4F3Fmthyk+FSBtL6k8Lmxgtp9kNQ4NLFTOnAk43WqM30kixlujJE5LyPouctAAAAA=="
+      },
+      {
+        "src": "/assets/media/g09DNVZ6dQZK.avif",
+        "kind": "image",
+        "width": 680,
+        "height": 382,
+        "alt": "Ollie, male Pomsky puppy, photo 2",
+        "focalX": 0.47,
+        "focalY": 0.478,
+        "color": "#483838",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAQCdASoQAAkAA4BaJaACsAC2z8Vn7AAA/ulfzvISzF02cIsLdTzLbEgKKbqW0PebPeFTF0IxSjncIICp08bRRVLLLS74VX7r9ORx3jDpIWAN0n1gbVSqpAj+km5kKWAAAA=="
+      },
+      {
+        "src": "/assets/media/b0jQRckH8Ukp.avif",
+        "kind": "image",
+        "width": 680,
+        "height": 382,
+        "alt": "Ollie, male Pomsky puppy, photo 3",
+        "focalX": 0.503,
+        "focalY": 0.373,
+        "color": "#d8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAQAgCdASoQAAkAA4BaJagC7AEWz+v9M5AAAP7KsAsv/U4DoFVazgXESpnrD7hXZ5foREnwEXrNfYqnePx+tXaiXC/hPG/RF3GJJ2pU2W/9c3tFO9PY7GwAAAA="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-bruno-boy",
+    "name": "Bruno",
+    "displayName": "Bruno",
+    "breed": "Maltipoo",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/w-F8mJLs2gtj.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Bruno, male Maltipoo puppy",
+      "focalX": 0.464,
+      "focalY": 0.388,
+      "color": "#f8f8f8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoQAAkAA4BaJbACdAEXTlh6dIMAAP72XUshMzW6F9JwG2lo34nF+h2JrQeEtTY5IrAtbv1sUE/WjpUHpmShlPx7xgsPTqBfHdwZvLBt5JDSWaKJztUPAsAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/w-F8mJLs2gtj.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bruno, male Maltipoo puppy",
+        "focalX": 0.464,
+        "focalY": 0.388,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoQAAkAA4BaJbACdAEXTlh6dIMAAP72XUshMzW6F9JwG2lo34nF+h2JrQeEtTY5IrAtbv1sUE/WjpUHpmShlPx7xgsPTqBfHdwZvLBt5JDSWaKJztUPAsAA"
+      },
+      {
+        "src": "/assets/media/sFWdG817xVHX.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bruno, male Maltipoo puppy, photo 2",
+        "focalX": 0.496,
+        "focalY": 0.391,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABwAgCdASoQAAkAA4BaJagCdAYs32XqpabWpmXIAPa/7VeZfEkxx4GICu8D9lMM3NivxcKAXEQWyqDr9i+OchEblw3B/XisJfF61LEAIpT2xbBUOboz/iUPplmt5CWezAAAAA=="
+      },
+      {
+        "src": "/assets/media/_C1zdODua2ZN.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bruno, male Maltipoo puppy, photo 3",
+        "focalX": 0.5,
+        "focalY": 0.389,
+        "color": "#f8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJaACdAEYF6oxsAgA/u4qK80U/sremACFshmprH57AW6X6gsy7mlRE8zOvgnLWR8xFqWVn9lHuvjhq33FH9ENbrHq4DmdBUB+ryOduViGKAAA"
+      },
+      {
+        "src": "/assets/media/8LG8sn_WCTjw.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bruno, male Maltipoo puppy, photo 4",
+        "focalX": 0.535,
+        "focalY": 0.379,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAQCdASoQAAkAA4BaJZACdADDk/sC9MAA/vZA/UeqZn8AyLZYERnf69Lw1vNd5ZkMfwJwcAqHNx6IZ5nsvoKGqCkDTrtKANrdHq+U1vAWzorgAAA="
+      }
+    ]
+  },
+  {
+    "slug": "maltese-buddy-male",
+    "name": "Buddy",
+    "displayName": "Buddy",
+    "breed": "Maltese",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "2 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/5ygCaO2TQb3v.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Buddy, male Maltese puppy",
+      "focalX": 0.483,
+      "focalY": 0.376,
+      "color": "#d8d8d8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJZgCdADHaA051AAA/ltaE2nPK1k64YD/2DtTHiVbFJW5CbUHAUqjFrbXlz5JNSkaoVeM9BW1Ru1OWtvcHWwodRfLR5BO491mAAAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/5ygCaO2TQb3v.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Buddy, male Maltese puppy",
+        "focalX": 0.483,
+        "focalY": 0.376,
+        "color": "#d8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJZgCdADHaA051AAA/ltaE2nPK1k64YD/2DtTHiVbFJW5CbUHAUqjFrbXlz5JNSkaoVeM9BW1Ru1OWtvcHWwodRfLR5BO491mAAAA"
+      }
+    ]
+  },
+  {
+    "slug": "maltese-charlie-male",
+    "name": "Charlie",
+    "displayName": "Charlie",
+    "breed": "Maltese",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3.5 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/0c1rFiKXQLLk.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Charlie, male Maltese puppy",
+      "focalX": 0.468,
+      "focalY": 0.334,
+      "color": "#e8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAkAA4BaJZACdAD5LGPVGIAA/gYA/gAaAAMnsshtJRY+/2nk2efYjExTLnJCCyLwNDBgHPdncwUj0TtjUeczzREG1LtR8v6VXb6SYC0xi7BHY7gAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/0c1rFiKXQLLk.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Charlie, male Maltese puppy",
+        "focalX": 0.468,
+        "focalY": 0.334,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAkAA4BaJZACdAD5LGPVGIAA/gYA/gAaAAMnsshtJRY+/2nk2efYjExTLnJCCyLwNDBgHPdncwUj0TtjUeczzREG1LtR8v6VXb6SYC0xi7BHY7gAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomeranian-daisy-girl",
+    "name": "Daisy",
+    "displayName": "Daisy",
+    "breed": "Pomeranian",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "2 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/d_ji2d9LVy0R.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Daisy, female Pomeranian puppy",
+      "focalX": 0.478,
+      "focalY": 0.384,
+      "color": "#e8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJagCdAEC2D5yGg+AAP7t6kffLNdjHBeG9y5wIPd7XKpkwe7NKy3ch7GVMHAQyT8YBcidYaJP/kNqiphgfH/pkfvneXVaohhGJsgmIwPQAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/d_ji2d9LVy0R.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Daisy, female Pomeranian puppy",
+        "focalX": 0.478,
+        "focalY": 0.384,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJagCdAEC2D5yGg+AAP7t6kffLNdjHBeG9y5wIPd7XKpkwe7NKy3ch7GVMHAQyT8YBcidYaJP/kNqiphgfH/pkfvneXVaohhGJsgmIwPQAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomeranian-bella-female",
+    "name": "Bella",
+    "displayName": "Bella",
+    "breed": "Pomeranian",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "4 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/9jwfs8kSZW7K.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Bella, female Pomeranian puppy",
+      "focalX": 0.494,
+      "focalY": 0.369,
+      "color": "#181828",
+      "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQAAkAA4BaJZACdACq22e8qxAA/h5tmtf6b3Jvmo1y3rrtq41/PC2ixyi3JSPU21wrrWKCfZsOw4pcx7aOW2BludfI8PmwNeR26J3ES6xmsmGAAAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/9jwfs8kSZW7K.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bella, female Pomeranian puppy",
+        "focalX": 0.494,
+        "focalY": 0.369,
+        "color": "#181828",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQAAkAA4BaJZACdACq22e8qxAA/h5tmtf6b3Jvmo1y3rrtq41/PC2ixyi3JSPU21wrrWKCfZsOw4pcx7aOW2BludfI8PmwNeR26J3ES6xmsmGAAAA="
+      }
+    ]
+  },
+  {
+    "slug": "poodle-teddy-male",
+    "name": "Teddy",
+    "displayName": "Teddy",
+    "breed": "Poodle",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/9XFYXsuvjIcz.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Teddy, male Poodle puppy",
+      "focalX": 0.398,
+      "focalY": 0.375,
+      "color": "#e8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABQAgCdASoQAAkAA4BaJYwCdAYsZyZv3velBgAAzjp7cmj/5JzRW5QCR5VWIDXbqD8hyYM2lDo3ZUwMe/fIyFzNi7gHkkXWVHbnXgnoHJVVsIBw3GCJ83xQAAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/9XFYXsuvjIcz.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Teddy, male Poodle puppy",
+        "focalX": 0.398,
+        "focalY": 0.375,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAABQAgCdASoQAAkAA4BaJYwCdAYsZyZv3velBgAAzjp7cmj/5JzRW5QCR5VWIDXbqD8hyYM2lDo3ZUwMe/fIyFzNi7gHkkXWVHbnXgnoHJVVsIBw3GCJ83xQAAA="
+      }
+    ]
+  },
+  {
+    "slug": "poodle-molly-female",
+    "name": "Molly",
+    "displayName": "Molly",
+    "breed": "Poodle",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/WZKcpiogRBW7.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Molly, female Poodle puppy",
+      "focalX": 0.533,
+      "focalY": 0.377,
+      "color": "#c8a898",
+      "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoQAAkAA4BaJbACdAC6h5rOQAD+sBDIcLH0OZye4LWe0Ou+OfNOUfuQNjr7sts3yfU/o2EIEmc1TUdc8dAaCzTllaLZr7l+gaAAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/WZKcpiogRBW7.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Molly, female Poodle puppy",
+        "focalX": 0.533,
+        "focalY": 0.377,
+        "color": "#c8a898",
+        "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADQAQCdASoQAAkAA4BaJbACdAC6h5rOQAD+sBDIcLH0OZye4LWe0Ou+OfNOUfuQNjr7sts3yfU/o2EIEmc1TUdc8dAaCzTllaLZr7l+gaAAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomski-coco-girl",
+    "name": "Coco",
+    "displayName": "Coco",
+    "breed": "Pomsky",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/CXIzj6hYrmuI.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Coco, female Pomsky puppy",
+      "focalX": 0.603,
+      "focalY": 0.385,
+      "color": "#f8f8f8",
+      "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAwAgCdASoQAAkAA4BaJaACdAYulnbKI51vaAD9/KduH7cFqFYQ1B1mfLSKSMc1odzT1vdPbxRp1sxDPV0cVaGhiXB2jnrs4eB5p7ommUsRMW0h4jodn0opkRp19kJrpKAAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/CXIzj6hYrmuI.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Coco, female Pomsky puppy",
+        "focalX": 0.603,
+        "focalY": 0.385,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAwAgCdASoQAAkAA4BaJaACdAYulnbKI51vaAD9/KduH7cFqFYQ1B1mfLSKSMc1odzT1vdPbxRp1sxDPV0cVaGhiXB2jnrs4eB5p7ommUsRMW0h4jodn0opkRp19kJrpKAAAA=="
+      },
+      {
+        "src": "/assets/media/-FHvJVowe9BE.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Coco, female Pomsky puppy, photo 2",
+        "focalX": 0.504,
+        "focalY": 0.42,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJZACw7D8EHLKuwgA/sIiu3QBUqII96W74ClUsEMSCt316uHvPmygkUtgTSk2RwaOBXusgiiwMKWvXAWvV/ZJfyDycUNX+HMbDgAA"
+      },
+      {
+        "src": "/assets/media/eEAN9ehfgzUH.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Coco, female Pomsky puppy, photo 3",
+        "focalX": 0.501,
+        "focalY": 0.373,
+        "color": "#78b868",
+        "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAACwAQCdASoQAAkAA4BaJZACdACUFlIAAOAg8Cq5aHv4jKyHw4bETL9OfiMzYWh8qLu08YPOvj0/kYhXOYqlLyGcr8ivzS6OXBgcyAmLOGowAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomsky-rosie-girl",
+    "name": "Rosie",
+    "displayName": "Rosie",
+    "breed": "Pomsky",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/FhrW7pE84bji.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Rosie, female Pomsky puppy",
+      "focalX": 0.491,
+      "focalY": 0.378,
+      "color": "#e8d8b8",
+      "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAQCdASoQAAkAA4BaJYwCdACxOIwAAP6bHtP/cNiQM6efgZ21Wf8O93AKJbViawKqLMgthDHOjGF8ULpaRfWpZ9uFUYZheTkPce9lGwe+iQAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/FhrW7pE84bji.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rosie, female Pomsky puppy",
+        "focalX": 0.491,
+        "focalY": 0.378,
+        "color": "#e8d8b8",
+        "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACwAQCdASoQAAkAA4BaJYwCdACxOIwAAP6bHtP/cNiQM6efgZ21Wf8O93AKJbViawKqLMgthDHOjGF8ULpaRfWpZ9uFUYZheTkPce9lGwe+iQAA"
+      },
+      {
+        "src": "/assets/media/gWQccavfMH2y.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rosie, female Pomsky puppy, photo 2",
+        "focalX": 0.575,
+        "focalY": 0.381,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJagCdAEejj8MqgxQAP5mfhXnHqBtVLBQ8tb/fU6Q4te81oOKv4ShF38Hj6Qik/Mc6tZWImvGGicunDguqn248pavuiwRmNBJd2gA"
+      },
+      {
+        "src": "/assets/media/MDgYDAK-rYNS.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rosie, female Pomsky puppy, photo 3",
+        "focalX": 0.507,
+        "focalY": 0.382,
+        "color": "#c8b8a8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAQCdASoQAAkAA4BaJQBOgB119hAA/udvk6q/bk64ehq3RLizNu5qZk/WZpzjaLapScY88ePUWmB7uR+EB+z/1FJ3G+OouRrwJeVyxj8Uyktij8CB2naFuiwAAA=="
+      },
+      {
+        "src": "/assets/media/XSnEb3BCsWp3.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rosie, female Pomsky puppy, photo 4",
+        "focalX": 0.562,
+        "focalY": 0.377,
+        "color": "#080808",
+        "blurDataUrl": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABQAgCdASoQAAkAA4BaJYwCdH8Agli3VniOMgAA/ma92/QhAeTvIgszLLCoRqM2Hc3z3wd9fjE7uDPwKefLvqmAacJgezeHYloqPdXTwrx6B0pt6ktjMrK3WpAAgG8DTEGxb24PN6GlYEzlAAA="
+      }
+    ]
+  },
+  {
+    "slug": "pomeranian-leo-boy",
+    "name": "Leo",
+    "displayName": "Leo",
+    "breed": "Pomeranian",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/5iCniMJshKud.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Leo, male Pomeranian puppy",
+      "focalX": 0.574,
+      "focalY": 0.324,
+      "color": "#e8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoQAAkAA4BaJZwC7AEfhv79S+gAAP7oAMrALwaZxMWl/tFNe+0bui49eHJOV9KfBbqv/gshCq/4C1tyNO2uAAAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/5iCniMJshKud.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Pomeranian puppy",
+        "focalX": 0.574,
+        "focalY": 0.324,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoQAAkAA4BaJZwC7AEfhv79S+gAAP7oAMrALwaZxMWl/tFNe+0bui49eHJOV9KfBbqv/gshCq/4C1tyNO2uAAAA"
+      },
+      {
+        "src": "/assets/media/QlGcnXhp9ltN.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Pomeranian puppy, photo 2",
+        "focalX": 0.527,
+        "focalY": 0.469,
+        "color": "#f8e8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAQCdASoQAAkAA4BaJaACdAC8Qfo5AAD+7ioz1P1zdHBnZFJc6ncpd3GzZyZcU3Ike0tArBnvoayTHkuw1XAH/NxYUbXlfN0V2V2v9DUgp5o2bCVJkYAA"
+      },
+      {
+        "src": "/assets/media/vngT5Hr9RU6K.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Pomeranian puppy, photo 3",
+        "focalX": 0.465,
+        "focalY": 0.365,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAACwAQCdASoQAAkAA4BaJYwCdACC2OkAAP7z6TnGl0CkKP9+PDar8dgxSRtJex2ir2E+rqSMb2gWEb33HwIEpk/hmBcwm+V8o9HlgKC9r0jjabgGAAA="
+      },
+      {
+        "src": "/assets/media/_dhcJyTwachZ.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Pomeranian puppy, photo 4",
+        "focalX": 0.65,
+        "focalY": 0.317,
+        "color": "#e8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAAkAA4BaJYgCdAEWDP1FwAAA/uG+CJAByLeVWE87E92odrNlzdClGaYa0QAzxnUiNKHCqLEWL7MqGt3lzTyOje20jVW7R7MAAA=="
+      },
+      {
+        "src": "/assets/media/PFumanOM5PmY.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Leo, male Pomeranian puppy, photo 5",
+        "focalX": 0.501,
+        "focalY": 0.351,
+        "color": "#d8d8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAwAgCdASoQAAkAA4BaJYgCdAEXb3GYbG08AAD+8BfvcY9rhYIILuzMQxsubuvEYWsMc/cL+j+dubMf7YhAmk9xwxVd4e2KRe0zxgdit6uDw5s0qegIgAAA"
+      }
+    ]
+  },
+  {
+    "slug": "poodle-molly-girl",
+    "name": "Molly",
+    "displayName": "Molly",
+    "breed": "Poodle",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/lsaKvJhLwHB4.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Molly, female Poodle puppy",
+      "focalX": 0.591,
+      "focalY": 0.377,
+      "color": "#784828",
+      "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJagCdAD1kRhutLAA/slbs+oUlHXqW0Uy0jrXGXWYgqjhf8xfFuOIlYWVkE6FRIYoHEb1fuaZ03RIkCJIGEjlnsF83QexGWp/oWcH/sXtlgAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/lsaKvJhLwHB4.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Molly, female Poodle puppy",
+        "focalX": 0.591,
+        "focalY": 0.377,
+        "color": "#784828",
+        "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJagCdAD1kRhutLAA/slbs+oUlHXqW0Uy0jrXGXWYgqjhf8xfFuOIlYWVkE6FRIYoHEb1fuaZ03RIkCJIGEjlnsF83QexGWp/oWcH/sXtlgAA"
+      },
+      {
+        "src": "/assets/media/6Z0Cq7I0EDE9.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Molly, female Poodle puppy, photo 2",
+        "focalX": 0.541,
+        "focalY": 0.353,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJaACdAYt89u6uE8AAP6YtdguAvuA+IBAe/vwxsl+I2+nuOe2vEHviE5Lf4WZzthNEFMhCqDiwJpit5WxDXHR3zZ6eHnbPYHQaAAA"
+      },
+      {
+        "src": "/assets/media/W0C2LYvmeHZb.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Molly, female Poodle puppy, photo 3",
+        "focalX": 0.43,
+        "focalY": 0.385,
+        "color": "#d8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAkAA4BaJbACdADdpE2tdgAA+XjQJCZiQb7S2nSL53jOmdRHHhnjlDdqSz9fsuSEMfcpB8NWKA7iaLh/lI5i/52syuFPQ4xUzN2cKaBDmu/+YoAAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "poodle-rocky-boy",
+    "name": "Rocky",
+    "displayName": "Rocky",
+    "breed": "Poodle",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/51aMfxO7oeVe.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Rocky, male Poodle puppy",
+      "focalX": 0.493,
+      "focalY": 0.38,
+      "color": "#f8e8f8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwAgCdASoQAAkAA4BaJZACdAEXsv4xUPo7QAD+1imgsgC2uTAqmsFzhU/RPjVAbefFFrdfE5o/aQVNDe0+qeRnf3nwP/feePXN2lj5LNBwRaEO12wAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/51aMfxO7oeVe.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rocky, male Poodle puppy",
+        "focalX": 0.493,
+        "focalY": 0.38,
+        "color": "#f8e8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwAgCdASoQAAkAA4BaJZACdAEXsv4xUPo7QAD+1imgsgC2uTAqmsFzhU/RPjVAbefFFrdfE5o/aQVNDe0+qeRnf3nwP/feePXN2lj5LNBwRaEO12wAAA=="
+      },
+      {
+        "src": "/assets/media/ztyBn9j_JUCY.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rocky, male Poodle puppy, photo 2",
+        "focalX": 0.495,
+        "focalY": 0.333,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQAgCdASoQAAkAA4BaJbACdAEXucO0X9oAAP70/rMl1sOgzeztYzXKZhpzp/BBLg1oCe7DQYHqtj9M6i70L1twORCOgF1WOMwL6uo/eZFrjCNdMOFgo9Tw0wi7uhebD8bsfZspq+kV082/AAA="
+      },
+      {
+        "src": "/assets/media/qlNAvs41lO96.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rocky, male Poodle puppy, photo 3",
+        "focalX": 0.571,
+        "focalY": 0.377,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABwAgCdASoQAAkAA4BaJbACdH8EaAApO8jI8yI0AP5qZlAjogbi7YJ6p5Ganui5G7SMA3UbkLZ/OpeDY4EB2axkdVOKGcezrnBP6q+9cAF6LXmFFEf+x/vZ9RqWipeS+POiaGKcz7g77R1xU2a4AA=="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-sophie-girl",
+    "name": "Sophie",
+    "displayName": "Sophie",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/PYYTxpqgo76_.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Sophie, female Maltipoo puppy",
+      "focalX": 0.476,
+      "focalY": 0.378,
+      "color": "#d8b898",
+      "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJagCdAYtLSojtSAA/uJ2tMRrEz3l9k6iExlCsyp9eaU3eABDLmNCwMqvRE6Vg2co7JH75TrWivWRUnwr4n6j9v4P+KD9urX2u7d1Zaf+XwAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/PYYTxpqgo76_.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sophie, female Maltipoo puppy",
+        "focalX": 0.476,
+        "focalY": 0.378,
+        "color": "#d8b898",
+        "blurDataUrl": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAADwAQCdASoQAAkAA4BaJagCdAYtLSojtSAA/uJ2tMRrEz3l9k6iExlCsyp9eaU3eABDLmNCwMqvRE6Vg2co7JH75TrWivWRUnwr4n6j9v4P+KD9urX2u7d1Zaf+XwAA"
+      },
+      {
+        "src": "/assets/media/acBlWdOFAQPR.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sophie, female Maltipoo puppy, photo 2",
+        "focalX": 0.523,
+        "focalY": 0.382,
+        "color": "#b88868",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAkAA4BaJbACdAYtpL0hN2EAAMyiMWL36hY+2iTOzFxu9XuQvcFTcOPcuUVqWw89RseRLCJ5bsz7qOLPrj2+r4fN8bL8XUsmy2o85km2IbB1+cAAAA=="
+      },
+      {
+        "src": "/assets/media/QNQCIylbIb5p.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Sophie, female Maltipoo puppy, photo 3",
+        "focalX": 0.51,
+        "focalY": 0.435,
+        "color": "#d8b888",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAQCdASoQAAkAA4BaJbACdADpvoNUAADLCeBlNKMEr70fdy7l404nNsnDudjBfcxgFgvP8T6rL8agXBxybB+Q1mtRk0A4/qXbvqji3zcQ33WeHXf3mo34QlLsh0ukR0gAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-lola-girl",
+    "name": "Lola",
+    "displayName": "Lola",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/HPs4cYizPzy9.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Lola, female Maltipoo puppy",
+      "focalX": 0.543,
+      "focalY": 0.373,
+      "color": "#f8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAQCdASoQAAkAA4BaJZACdADp+guFlyAA/vC0nB6Zmm9y71ftDOrPLHZ06b6ShjWszGzWR2qXXW+2EKc3y0JT6Mhtgh22UoJGsQaAkryYt1YAAAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/HPs4cYizPzy9.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Lola, female Maltipoo puppy",
+        "focalX": 0.543,
+        "focalY": 0.373,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAQCdASoQAAkAA4BaJZACdADp+guFlyAA/vC0nB6Zmm9y71ftDOrPLHZ06b6ShjWszGzWR2qXXW+2EKc3y0JT6Mhtgh22UoJGsQaAkryYt1YAAAA="
+      },
+      {
+        "src": "/assets/media/jvXWZ3mAHc5-.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Lola, female Maltipoo puppy, photo 2",
+        "focalX": 0.535,
+        "focalY": 0.368,
+        "color": "#f8d8b8",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAAAwAgCdASoQAAkAA4BaJaACdAYtVUCm807OAAD+8jslJCoNgaph5G8F+CqIudmUjYC0zAiyO5F1A9cUB/Lye3dIrayU66NnzwW+7uOkg6hSycDXYcoAYt3RUhLoU2piFmuAAA=="
+      },
+      {
+        "src": "/assets/media/XGJNMr35jPMb.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Lola, female Maltipoo puppy, photo 3",
+        "focalX": 0.488,
+        "focalY": 0.257,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQAAkAA4BaJZgCdAEKLVvgoWzQAP7hxOalhaemmsSUvkw8Hm/Q1mCQ8doB1+nT7lIJ9Ei1MUorsDRPB+bmlyD6zC0AaJ6QT+8NdkJTUTLQAAAA"
+      },
+      {
+        "src": "/assets/media/yjYnkgvYqpaV.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Lola, female Maltipoo puppy, photo 4",
+        "focalX": 0.507,
+        "focalY": 0.376,
+        "color": "#e8e8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQAAkAA4BaJagCdAEDyVpmIbHoAP62/UmHbWOutLYNLNgIa2ZUrpXdWwyjUsF+h5tqSWfckGagui6N7dNIKkL3r1VTgUlH0GwD8gDHXNWAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomeranian-rex-boy",
+    "name": "Rex",
+    "displayName": "Rex",
+    "breed": "Pomeranian",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "5 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/QIIvMqQTe9jr.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Rex, male Pomeranian puppy",
+      "focalX": 0.497,
+      "focalY": 0.369,
+      "color": "#c8b8b8",
+      "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoQAAkAA4BaJQBOgCBiUVEXCAD+J34RM7hDnQQcA9q8oboBs/AMO4x6bOl2TeniTuWwP1ZUn/YlHy5rBB5sOQtdAOOwQz+7xe92PAAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/QIIvMqQTe9jr.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rex, male Pomeranian puppy",
+        "focalX": 0.497,
+        "focalY": 0.369,
+        "color": "#c8b8b8",
+        "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoQAAkAA4BaJQBOgCBiUVEXCAD+J34RM7hDnQQcA9q8oboBs/AMO4x6bOl2TeniTuWwP1ZUn/YlHy5rBB5sOQtdAOOwQz+7xe92PAAA"
+      },
+      {
+        "src": "/assets/media/XYGXHgU4LzqM.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rex, male Pomeranian puppy, photo 2",
+        "focalX": 0.506,
+        "focalY": 0.329,
+        "color": "#d8c8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJagCdAEVy/NAEgAA/rMrblWd5BgTIm5Tc8JZxtlx9cMSd9+QOtNF899z9IN+FvZJnlYD85r+9IIn3LPwtgSCudnkRbYgd6FIaJAA"
+      },
+      {
+        "src": "/assets/media/NnPuBopnrcWb.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Rex, male Pomeranian puppy, photo 3",
+        "focalX": 0.486,
+        "focalY": 0.538,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADwAQCdASoQAAkAA4BaJZACdAYuRm421JAA/rxsWyNjPyjthaDDVnPIbmSLfyqCEfXgoVDxKzxq0WXK5QJ7nFnNzX/U5C5rSZLWwj8cnN9Pnj9AJIFcHh4AAz4/TdfMAAA="
+      }
+    ]
+  },
+  {
+    "slug": "pomsky-finn-male",
+    "name": "Finn",
+    "displayName": "Finn",
+    "breed": "Pomsky",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/tEAwWspMD8iG.avif",
+      "kind": "image",
+      "width": 980,
+      "height": 551,
+      "alt": "Finn, male Pomsky puppy",
+      "focalX": 0.568,
+      "focalY": 0.501,
+      "color": "#b8b8b8",
+      "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQAgCdASoQAAkAA4BaJYgCdIExFxK111dK1AAA/tKisucqXWWOalPAGaMit5TeskAKoh5METexDKZe2VJOiT8mBfamOkg4+0XDPw9Khms4FagXN8tang/dr28AE6pwSqQAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/tEAwWspMD8iG.avif",
+        "kind": "image",
+        "width": 980,
+        "height": 551,
+        "alt": "Finn, male Pomsky puppy",
+        "focalX": 0.568,
+        "focalY": 0.501,
+        "color": "#b8b8b8",
+        "blurDataUrl": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQAgCdASoQAAkAA4BaJYgCdIExFxK111dK1AAA/tKisucqXWWOalPAGaMit5TeskAKoh5METexDKZe2VJOiT8mBfamOkg4+0XDPw9Khms4FagXN8tang/dr28AE6pwSqQAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "maltipoo-zoe-girl",
+    "name": "Zoe",
+    "displayName": "Zoe",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/fxj_9aZOSxQM.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Zoe, female Maltipoo puppy",
+      "focalX": 0.328,
+      "focalY": 0.376,
+      "color": "#f8e8c8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQAgCdASoQAAkAA4BaJaACdAD8dE9GiGAAAP7n//AtZS22+joULjfsi5MB/mefptbI8nFZlqT1EgHPJmvWFb9RM9XzyHjwtDBFyOsMTk6GygT7cAA="
+    },
+    "media": [
+      {
+        "src": "/assets/media/fxj_9aZOSxQM.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Zoe, female Maltipoo puppy",
+        "focalX": 0.328,
+        "focalY": 0.376,
+        "color": "#f8e8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAQAgCdASoQAAkAA4BaJaACdAD8dE9GiGAAAP7n//AtZS22+joULjfsi5MB/mefptbI8nFZlqT1EgHPJmvWFb9RM9XzyHjwtDBFyOsMTk6GygT7cAA="
+      },
+      {
+        "src": "/assets/media/-n7-ho2rs84i.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Zoe, female Maltipoo puppy, photo 2",
+        "focalX": 0.532,
+        "focalY": 0.377,
+        "color": "#f8e8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAAkAA4BaJZgCdADw0bJu/rAA/vTfGrNT3qNL4vF/1Hjd3+NHxmIMDmy3BLFU+ZT6iGT9QRQjJOolFCPoAaSIeIHktyY/usAAAA=="
+      },
+      {
+        "src": "/assets/media/t43PZgjPeE4u.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Zoe, female Maltipoo puppy, photo 3",
+        "focalX": 0.493,
+        "focalY": 0.426,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAABQAgCdASoQAAkAA4BaJbACdAYvXqcxRcU0NkwA/u5erZDC13gypmOEFMSpa21ZgmL08d1mBpKS1Cev7VXkKvfxSNgwBIEbplrmztvuFpS8A/z0J+mB6O0Yh/k3Si3G1rwk2EQlL6/uAAAA"
+      },
+      {
+        "src": "/assets/media/bD6FLYEKXj-U.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Zoe, female Maltipoo puppy, photo 4",
+        "focalX": 0.44,
+        "focalY": 0.375,
+        "color": "#d8b8a8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQAQCdASoQAAkAA4BaJbACdH8AEGv3oAD+B4MaEv/GBGECOgL0Kf7LluujolWSDoXFeUBPuRN0YLGvhq8dLm11No6l8CcAmhYGOvUXokTU6FDzQVqTx54nJX2DTiQAAAA="
+      },
+      {
+        "src": "/assets/media/BlBD6bzXcTBL.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Zoe, female Maltipoo puppy, photo 5",
+        "focalX": 0.518,
+        "focalY": 0.378,
+        "color": "#e8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQAAkAA4BaJbACdAEDySI3xnaKAAD+vJHriJMgcQMEpMt9w7HGmPwDwHh1kGXG4pjE2wfztvsq9rGK+wH2k4B2YGxqYhEc8s+P36zRQw+8OvjWyzwAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "pomeranian-mimi-girl",
+    "name": "Mimi",
+    "displayName": "Mimi",
+    "breed": "Pomeranian",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/BLOZLPixUcjE.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Mimi, female Pomeranian puppy",
+      "focalX": 0.581,
+      "focalY": 0.41,
+      "color": "#f8e8e8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQAAkAA4BaJbACdAEC1k8LFWAAAP7KlWI8RxAVlv/N/0F4t9/w2xhf8oeKLsb+01YYRbjxNjzTubcemnPGO1LvW/eVrQHjvhMNr9+AzMIAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/BLOZLPixUcjE.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mimi, female Pomeranian puppy",
+        "focalX": 0.581,
+        "focalY": 0.41,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQAAkAA4BaJbACdAEC1k8LFWAAAP7KlWI8RxAVlv/N/0F4t9/w2xhf8oeKLsb+01YYRbjxNjzTubcemnPGO1LvW/eVrQHjvhMNr9+AzMIAAA=="
+      },
+      {
+        "src": "/assets/media/9w3Xrwp8VCQp.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bailey, male Bichon puppy, photo 2",
+        "focalX": 0.531,
+        "focalY": 0.431,
+        "color": "#f8d8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAACwAQCdASoQAAkAA4BaJagCdAEGxcTwAP7I3qISPmqaXWW4pJ4dDqacbvaOZVTIz5QKVSowvx+cRrzE94BXC6LLwi7ZEIUODcQfjAz04oFxSfXT2njIAAAA"
+      },
+      {
+        "src": "/assets/media/7mVO0A41SNif.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mimi, female Pomeranian puppy, photo 3",
+        "focalX": 0.411,
+        "focalY": 0.481,
+        "color": "#f8f8f8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQAAkAA4BaJbACdAEf5iYOmSAA/u3Wg1v5nu3aE0RFnrFgoZ2xzspOd62RYyXHOeBjQOF7bTLzNl0qd0a3r4SAaKgd5rcxg5/X30riUi7u3+9bUAA="
+      },
+      {
+        "src": "/assets/media/dreWbR7rs4Jm.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mimi, female Pomeranian puppy, photo 4",
+        "focalX": 0.61,
+        "focalY": 0.405,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJbACdAEQ0FRz7AAA/u5T+g9TXh5a6pbegtOCdzxEKcb5rqy0sal/P60YnijkYSgNE5JIZ2WlFoQtDlE1b+yNQcgyawIQa/inuSAA"
+      },
+      {
+        "src": "/assets/media/Dn_gqD19_Ybk.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mimi, female Pomeranian puppy, photo 5",
+        "focalX": 0.543,
+        "focalY": 0.466,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAkAA4BaJQBOgB8x7sYnnQAA/u/2Cljtpoo1jfH4TEqRnkMu5+hkbFBrlmmPpzPRbSfCERbIjCExQJrNGLIsAAA="
+      },
+      {
+        "src": "/assets/media/tJCfAV1Itd01.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Mimi, female Pomeranian puppy, photo 6",
+        "focalX": 0.468,
+        "focalY": 0.38,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAAAQAgCdASoQAAkAA4BaJZQCdAEfQ5nHpY3wAP3GThOVpIrm6g6DvzpkxTut/D0Psto6yRFAnyJMM+JNQGXr2smWmz6FeBGuMsXBOpbUBLrxt4AA"
+      }
+    ]
+  },
+  {
+    "slug": "bichon-bailey-boy",
+    "name": "Bailey",
+    "displayName": "Bailey",
+    "breed": "Bichon",
+    "gender": "male",
+    "genderLabel": "Boy",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/fI-hlHuSwrRw.avif",
+      "kind": "image",
+      "width": 720,
+      "height": 405,
+      "alt": "Bailey, male Bichon puppy",
+      "focalX": 0.516,
+      "focalY": 0.428,
+      "color": "#c8c8c8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAQCdASoQAAkAA4BaJQBOgMVkwu94SAD8tKK4kEFRUx3qSInFi0DDSzsyYUKo7v/guWoOEY153vAmZLFP7NRw62xrMIwiJUbBm+s8wPjHX8AA8PhEAAAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/fI-hlHuSwrRw.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bailey, male Bichon puppy",
+        "focalX": 0.516,
+        "focalY": 0.428,
+        "color": "#c8c8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADQAQCdASoQAAkAA4BaJQBOgMVkwu94SAD8tKK4kEFRUx3qSInFi0DDSzsyYUKo7v/guWoOEY153vAmZLFP7NRw62xrMIwiJUbBm+s8wPjHX8AA8PhEAAAA"
+      },
+      {
+        "src": "/assets/media/9w3Xrwp8VCQp.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bailey, male Bichon puppy, photo 2",
+        "focalX": 0.531,
+        "focalY": 0.431,
+        "color": "#f8d8c8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAACwAQCdASoQAAkAA4BaJagCdAEGxcTwAP7I3qISPmqaXWW4pJ4dDqacbvaOZVTIz5QKVSowvx+cRrzE94BXC6LLwi7ZEIUODcQfjAz04oFxSfXT2njIAAAA"
+      },
+      {
+        "src": "/assets/media/Kcx3CL9712j_.avif",
+        "kind": "image",
+        "width": 720,
+        "height": 405,
+        "alt": "Bailey, male Bichon puppy, photo 3",
+        "focalX": 0.474,
+        "focalY": 0.418,
+        "color": "#f8e8e8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAQAgCdASoQAAkAA4BaJQBWAMXh50exnBMAAP7xpaoH83UgDzWxRYvB1G5j6VWetLeeqf5Kl+SC3arnSXceOL5OpTcB5qvEwJdUxIC71QIoMgpWcguSCLL6tJkYvOkAAAA="
+      }
+    ]
+  },
+  {
+    "slug": "puppy",
+    "name": "Maltipoo",
+    "displayName": "Maltipoo",
+    "breed": "Maltipoo",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "imported",
+    "where": "Imported for you",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/Cl0B4v8U3Y-d.avif",
+      "kind": "image",
+      "width": 980,
+      "height": 551,
+      "alt": "Female Maltipoo puppy",
+      "focalX": 0.483,
+      "focalY": 0.313,
+      "color": "#182808",
+      "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAkAA4BaJagCdAEVHACcSgAA/i/LifIcYmMBYhQVrn2V+DCft7syiswfoP5/5VjMh/KCpZTGf51uWTDo9jAEt6nEXbqsPEj47A/9NmMYtMCLPAAAAA=="
+    },
+    "media": [
+      {
+        "src": "/assets/media/Cl0B4v8U3Y-d.avif",
+        "kind": "image",
+        "width": 980,
+        "height": 551,
+        "alt": "Female Maltipoo puppy",
+        "focalX": 0.483,
+        "focalY": 0.313,
+        "color": "#182808",
+        "blurDataUrl": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAADwAQCdASoQAAkAA4BaJagCdAEVHACcSgAA/i/LifIcYmMBYhQVrn2V+DCft7syiswfoP5/5VjMh/KCpZTGf51uWTDo9jAEt6nEXbqsPEj47A/9NmMYtMCLPAAAAA=="
+      }
+    ]
+  },
+  {
+    "slug": "maltipo",
+    "name": "Poodle",
+    "displayName": "Poodle",
+    "breed": "Poodle",
+    "gender": "female",
+    "genderLabel": "Girl",
+    "age": "3 months",
+    "description": "",
+    "status": "gone-home",
+    "origin": "local",
+    "where": "In Dubai",
+    "breeds": [],
+    "collections": [],
+    "cover": {
+      "src": "/assets/media/sFgPBojUhFBo.avif",
+      "kind": "image",
+      "width": 980,
+      "height": 551,
+      "alt": "Female Poodle puppy",
+      "focalX": 0.44,
+      "focalY": 0.328,
+      "color": "#d8d8d8",
+      "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAwAgCdASoQAAkAA4BaJYwCdIDZElvxow64AAD+79f31xtR81BNYbcIirOrDTe8c5P4CIv/i47P/lEGyUZ2ghG0ST/ypH3m+a0VZZ2/QZUuCyD+C+Q+TgAA"
+    },
+    "media": [
+      {
+        "src": "/assets/media/sFgPBojUhFBo.avif",
+        "kind": "image",
+        "width": 980,
+        "height": 551,
+        "alt": "Female Poodle puppy",
+        "focalX": 0.44,
+        "focalY": 0.328,
+        "color": "#d8d8d8",
+        "blurDataUrl": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAwAgCdASoQAAkAA4BaJYwCdIDZElvxow64AAD+79f31xtR81BNYbcIirOrDTe8c5P4CIv/i47P/lEGyUZ2ghG0ST/ypH3m+a0VZZ2/QZUuCyD+C+Q+TgAA"
+      }
+    ]
   }
 ]

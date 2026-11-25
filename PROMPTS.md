@@ -124,3 +124,52 @@ Full checklist: [ANALYSIS.md](ANALYSIS.md)
 - **Turbopack doesn't pick up newly added `@import`s in `globals.css`.** The sections rendered unstyled (Passport was 6795px tall instead of 922px). The standalone Tailwind build was correct, so the dev server needed a restart. Worth knowing for anyone working on the repo.
 - **ESLint caught issues in the copied content:** unescaped apostrophes in copy, and a `setState` called synchronously inside an effect. Fixed with `&apos;` and timer-based state updates.
 - **A first curtain version used `useSearchParams`,** which (with `cacheComponents`) forces a Suspense boundary, so the intro wouldn't be in the server HTML. Switched to tracking `pathname` only, and filters deliberately skip the curtain.
+
+---
+
+## Prompt 5 — "Yes, continue" (2026-11-25)
+
+> Yes, continue
+
+### Phase 3 (part 3) — Puppies listing + 42 puppy detail pages
+**What was built**
+- `app/puppies/page.tsx`: the "Teddy's sketchbook" hero, sticker-chip filters, a grid of hand-drawn puppy cards, and the "Already gone home" strip.
+- `components/puppies/PuppyBrowser.tsx`: filters synced to the URL, the live count, and an empty state.
+- `components/puppies/SketchCard.tsx` + `lib/sketch.ts`: each card's wobbly watercolour wash, masked photo, ink outline and doodles.
+- `app/puppies/[slug]/page.tsx`: 42 statically generated pages (15 available + 27 gone home).
+- `components/puppy/PuppyGallery.tsx`: carousel, thumbnails and a full-screen viewer.
+- `components/puppy/EnquiryForm.tsx` + `lib/enquiry.ts` + `app/api/enquiry/route.ts`: the enquiry form, its validation and a server endpoint.
+- `components/puppy/StoryRibbon.tsx`: a bookmark ribbon that fills as you scroll.
+- Data for the 27 gone-home puppies, parsed from their detail pages, plus 72 more local media files (204 in total).
+
+**Key decisions**
+- **Filters reverse-engineered from behaviour, then verified.** I clicked through a fixed sequence of chips on the original and logged the URL, the count text and which chips were pressed after each click. I ran the identical script on the clone, and the two logs match exactly. Rules:
+  - "Imported" (`?origin=`) and "Korean Teacup" (`?collection=`) toggle independently;
+  - breed and boy/girl are single-choice toggles;
+  - "Everywhere" clears everything;
+  - "Clear filters" appears only when a filter is active;
+  - `?origin=local` (linked from the home page) shows the "No puppies match just now" empty state.
+- **Server-rendered cards, client-side filtering.** The cards are server components passed into the client `PuppyBrowser` as a map of slug → card, so the browser only decides which to show. The filter UI reads the URL, so it sits in `<Suspense>`, and the fallback is the same grid unfiltered: no layout jump while it hydrates.
+- **Procedural "sketch" shapes instead of copying 20 sets of SVG paths.** The original generates a unique hand-drawn circle per card. `lib/sketch.ts` does the same: a seeded PRNG (mulberry32 keyed by the slug) plus a radius wobble made of summed sines, smoothed with Catmull-Rom curves. The doodle shapes (paw, heart, sparkle, swirl, dots, motion lines) are copied from the original's SVG. Being deterministic, it renders identically on server and client.
+- **Detail pages are fully static.** `generateStaticParams` prerenders all 42 slugs. Next 16 wants `params` read inside `<Suspense>`, so the page streams its content into a placeholder, exactly the structure the original uses.
+- **Enquiry form.** The original posts to a private server action, so I built:
+  - one shared `validateEnquiry()`, used both in the browser (instant errors, focus moves to the first bad field, `aria-invalid` / `aria-describedby`) and in `/api/enquiry` (never trust the client);
+  - a honeypot field for bots;
+  - the original's "Message received!" envelope card on success.
+
+  The API route only validates and logs, and the code comment says where to plug in email/CRM delivery.
+- **Gallery.** Prev/next with wrap-around, thumbnails, a native `<dialog>` full-screen viewer with arrow keys, swipe on touch, and video playback.
+
+**Verification**
+- `/puppies` page height is identical to the original at 1440px (2970px) and 375px (4337px).
+- The filter click log is identical to the original's.
+- Detail pages compared side by side (available and gone-home variants), including prev/next targets and the pre-filled message.
+- Gallery test: next → 2/11, prev ×2 → 11/11 (wraps), thumbnail 5 → 5/11, viewer + →→ → 7/11, close → page scroll unlocked.
+- Form test: empty submit → 2 errors and focus on name; bad phone/email → 2 errors and focus on phone; valid → "Message received!". The API returns 422 with field errors for bad data.
+- Curtain on a real navigation: `covering → covered → (route changes) → lifting → idle` in ~900ms, landing at the top of the new page.
+
+**Challenges**
+- **The original's detail pages and filter panel are streamed or client-only,** so they weren't in the downloaded HTML. I read the hidden `<div id="S:0">` stream block, and pulled the filter panel's live DOM from the browser.
+- **Validation messages aren't in the original's client JS** (validation happens in a server action), so I wrote clear, friendly messages of my own.
+- **Bugs caught by testing:** two quick "previous" clicks moved only one photo (stale state; fixed with functional `setState`), and page scroll stayed locked after closing the viewer (fixed by unlocking on close as well as on the dialog's `close` event). The page-turn animation also ran on first load; it now runs only after the reader changes photo.
+- **Next 16 route types (`PageProps<"/puppies/[slug]">`) are generated,** so `next typegen` has to run before `tsc` for dynamic routes.
