@@ -4,7 +4,8 @@ A pixel-accurate clone of [puppy.instabizweb.com](https://puppy.instabizweb.com/
 
 The original is an illustrated, animation-heavy puppy shop: the home page tells a "morning to night" story as you scroll, with a mascot (Teddy), a sideways-scrolling hallway of doors, a WhatsApp phone mock-up, a passport book and more. This clone reproduces its design, layout, responsiveness and behaviour across all 55 pages.
 
-**Live site:** _add your Vercel URL here after deploying_
+**Live site:** https://blutec-assignment.vercel.app  
+**Repository:** https://github.com/Utsav202004/blutec-assignment
 
 > The full build log (every prompt, decision and challenge) is in [PROMPTS.md](PROMPTS.md). The initial site audit is in [ANALYSIS.md](ANALYSIS.md).
 
@@ -50,8 +51,8 @@ There are no UI or animation libraries. Interactions use native browser features
 | Page | Mobile perf | Desktop perf | A11y | Best practices | SEO |
 |---|---|---|---|---|---|
 | Home and content pages | 100 | 100 | 100 | 100 | 100 |
-| Puppies listing | 98 | 100 | 100 | 100 | 100 |
-| Puppy detail | 85 simulated / 98 real throttling | 99 | 100 | 100 | 100 |
+| Puppies listing | 100 live on Vercel (98 locally) | 100 | 100 | 100 | 100 |
+| Puppy detail | 96 live on Vercel (85 simulated / 98 real throttling locally) | 99 | 100 | 100 | 100 |
 
 ## Project structure
 
@@ -89,8 +90,8 @@ public/assets/
 Requirements: **Node.js 20.9+** (developed on Node 26) and npm.
 
 ```bash
-git clone https://github.com/<your-username>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Utsav202004/blutec-assignment.git
+cd blutec-assignment
 npm install
 npm run dev
 ```

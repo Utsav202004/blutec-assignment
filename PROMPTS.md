@@ -264,3 +264,46 @@ All tests ran against a **production build** (`next build && next start`), not t
 - **Stale production CSS.** After changing `globals.css`, a normal `next build` still shipped the old media query: Turbopack's build cache had kept the old CSS. Deleting `.next` fixed it, so every measured build after that was a clean build.
 - **The browser cache made old builds look current.** The browser pane kept serving cached HTML from earlier builds, which produced misleading "preloaded but not used" warnings for files that no longer existed. A cache-busting query string gave a clean read.
 - **Sharing the browser with the user.** You were using the preview pane during testing, so I moved my checks to background tabs and finished the last ones headlessly with Lighthouse.
+
+---
+
+## Prompt 8 — "Start Phase 6" (2026-11-25)
+
+> Start Phase 6
+
+### Phase 6 — README, GitHub, Vercel
+**What was done**
+- **Rewrote `README.md`:** what the project is, the tech stack, a pages table, features (responsive, animations, accessibility, performance), the Lighthouse results, the annotated project structure, how to run it locally, two deployment options (GitHub import or Vercel CLI), and notes on placeholders, simplifications and content ownership.
+- **Pre-flight checks before going public:**
+  - a clean production build (55 pages) and lint;
+  - no `.env`, keys or local settings tracked (`.claude/settings.local.json` is git-ignored);
+  - no file over 20 MB (the largest video is 6.5 MB, well under GitHub's 100 MB limit);
+  - no local machine paths in tracked files.
+- **Created the public GitHub repo** [Utsav202004/blutec-assignment](https://github.com/Utsav202004/blutec-assignment) with the GitHub CLI and pushed `main` (7 commits).
+
+**Key decisions**
+- **Asked before publishing.** A public repo is outward-facing and the commits carry your name and email, so I confirmed the repo name and visibility first.
+- **Vercel login stays with you.** The deploy needs your Vercel account, so you run `vercel login` yourself and I run the deploy afterwards. (I never type credentials.)
+- **Kept the 78 MB of media in git.** It's under GitHub's limits, Vercel serves `public/` as static files, and the brief asked for local copies rather than hot-linked images, so Git LFS or an external CDN would only add complexity.
+
+---
+
+## Prompt 9 — "logged in" (2026-11-25)
+
+> logged in
+
+### Phase 6 (continued) — Vercel deployment
+**What was done**
+- `vercel link --project blutec-assignment` created and linked the Vercel project. The CLI wrote a short-lived OIDC token to `.env.local`, which is git-ignored by the existing `.env*` rule.
+- `vercel deploy --prod` built the site on Vercel and put it live at **https://blutec-assignment.vercel.app**.
+- Added `NEXT_PUBLIC_SITE_URL=https://blutec-assignment.vercel.app` as a production environment variable and redeployed, so Open Graph image URLs are absolute (checked: `og:image` = `https://blutec-assignment.vercel.app/assets/media/…`).
+
+**Verification on the live site**
+- All main routes return 200 (home, puppies, a puppy page, how it works, happy families, gone home, FAQ, contact), local media is served from `/assets/media`, and an unknown URL returns 404.
+- **Enquiry API:** invalid data → `422` with field errors; honeypot filled → silently accepted. The server-side validation works in production.
+- **Lighthouse (mobile) on the live URL:** Home 100, Puppies 100, Puppy detail 96, FAQ 100, with Accessibility, Best practices and SEO at 100 on every page. Vercel's CDN (HTTP/2, Brotli, edge-cached static HTML) improved on the local numbers (puppy page 85 → 96).
+- **Browser check at 1440px:** home page height 11993px (same as the original), the door hallway scrolls and opens, and the console is clean.
+
+**Notes**
+- The deploy was made from the CLI, so pushing to GitHub does not redeploy yet. Running `vercel git connect` (or connecting the repo in the Vercel dashboard) turns on automatic deploys for every push, plus preview URLs for pull requests.
+
