@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — copied from the reference site's compiled CSS so colours,
+ * fonts and easings match exactly. Anything declared in @theme becomes a
+ * Tailwind utility (e.g. --color-toffee → bg-toffee / text-toffee,
+ * --font-display → font-display, --ease-pounce → ease-pounce).
+ */
+@theme {
+  /* Brand palette */
+  --color-toffee: #c2622b;
+  --color-toffee-deep: #a24a1a;
+  --color-toffee-ink: #8e3f15;
+  --color-honey: #f2be6b;
+  --color-honey-soft: #fbe3b4;
+  --color-cocoa: #2a170e;
+  --color-cocoa-soft: #5a3a28;
+  --color-milk: #fffdf8;
+  --color-sky: #bfddf5;
+  --color-sky-deep: #2f6e9e;
+  --color-blush: #f9cdbf;
+  --color-whatsapp: #1f7a4d;
+  --color-whatsapp-deep: #1f5d3a;
+  --color-error: #b3261e;
+
+  /* Fonts — the CSS variables are injected by next/font in app/layout.tsx */
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-hand: var(--font-shantell), ui-rounded, "Comic Sans MS", cursive;
+
+  /* Signature easings */
+  --ease-pounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+:root {
+  color-scheme: light;
+  accent-color: var(--color-toffee-deep);
+  /* Fluid side padding used by every section */
+  --gutter: clamp(1rem, 4vw, 3.5rem);
+  --header-h: 4.75rem;
+  /* Height of the sticky mobile WhatsApp/Call bar (0 on desktop) */
+  --bar-h: 0px;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-h: 4rem;
+    --bar-h: calc(4rem + env(safe-area-inset-bottom));
+  }
+}
+
+html {
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  overflow-x: clip;
+  cursor: url(/assets/cursor/paw.svg) 9 6, auto;
+}
+
+/* ---------- Typography helpers (same names as the reference) ---------- */
+@utility font-plush {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+@utility font-plush-text {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 36;
+}
+
+@utility font-scrawl {
+  font-family: var(--font-hand);
+  font-variation-settings: "INFM" 60, "BNCE" 30;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+@utility gutter {
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Buttons ---------- */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.25rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-size: 1.0625rem;
+    font-weight: 650;
+    line-height: 1.1;
+    text-decoration: none;
+    transition:
+      transform 0.35s var(--ease-pounce),
+      background-color 0.25s ease,
+      color 0.25s ease,
+      box-shadow 0.35s var(--ease-silk);
+  }
+  .btn:active {
+    transform: scale(0.96);
+  }
+  .btn-primary {
+    background: var(--color-toffee-deep);
+    color: var(--color-milk);
+    box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+  }
+  .btn-ghost {
+    color: var(--color-cocoa);
+    border: 2px solid var(--color-cocoa);
+    background: transparent;
+  }
+  .btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: #fff;
+    box-shadow: 0 0.5rem 0 -0.15rem var(--color-cocoa);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      box-shadow: 0 0.7rem 0 -0.15rem var(--color-cocoa);
+      transform: translateY(-2px) rotate(-1deg);
+    }
+    .btn-ghost:hover {
+      background: var(--color-cocoa);
+      color: var(--color-milk);
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-2px) rotate(1deg);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
