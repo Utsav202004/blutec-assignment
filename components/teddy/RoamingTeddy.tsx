@@ -231,12 +231,26 @@ export function RoamingTeddy() {
       markScenes(p.k, p.t, holding);
     };
 
+    // The paw-print layer covers the page so prints can sit in page
+    // coordinates. Collapse it before reading the page height so it never
+    // counts itself (otherwise it could only ever grow), and collapse it
+    // again whenever Teddy stops, e.g. after navigating away from Home,
+    // so it can't leave empty scroll space on other pages.
+    const sizePrints = () => {
+      printsBox.style.height = "0px";
+      printsBox.style.height = `${document.documentElement.scrollHeight}px`;
+    };
+    const clearPrints = () => {
+      printsBox.style.height = "0px";
+      prints().forEach((el) => el.getAnimations().forEach((a) => a.cancel()));
+    };
+
     const measure = () => {
       const j = measureJourney();
       if (j.stops.length < 2) return stop();
       journey = j;
       html.dataset.pup = j.lane ? "lane" : "live";
-      printsBox.style.height = `${document.documentElement.scrollHeight}px`;
+      sizePrints();
     };
 
     const start = () => {
@@ -246,7 +260,7 @@ export function RoamingTeddy() {
       running = true;
       journey = j;
       html.dataset.pup = j.lane ? "lane" : "live";
-      printsBox.style.height = `${document.documentElement.scrollHeight}px`;
+      sizePrints();
       layer.hidden = false;
       prev = null;
       heldK = -1;
@@ -264,6 +278,7 @@ export function RoamingTeddy() {
       running = false;
       cancelAnimationFrame(frame);
       removeEventListener("scroll", onScroll);
+      clearPrints();
       layer.hidden = true;
       delete html.dataset.pup;
       journey?.stops.forEach((st) => {

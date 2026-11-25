@@ -379,3 +379,20 @@ All tests ran against a **production build** (`next build && next start`), not t
   - a minimum hold per stop, so a long sideways walk (dusk on the right → night on the left) just goes quicker instead of skipping a stop.
 - **Background-tab testing.** The preview tab was hidden, so the browser paused `requestAnimationFrame` and skipped `ResizeObserver` notifications. Teddy now also updates on scroll events and re-measures shortly after start, which makes him more robust for real visitors too.
 
+---
+
+## Prompt 15 — "there are a lot of empty endless scrolls on pages except Home" (2026-11-25)
+
+> there are a lot of of empty endless scrolls on pages except "Home" page
+
+**Cause.** The roaming Teddy's paw-print layer is an absolutely positioned box the height of the page, so prints can sit in page coordinates. On Home it was set to 12,694px. After navigating to another page with the client-side router, Teddy switched off but the layer kept that height. FAQ (2,383px of content) became 12,694px tall: about 10,300px of blank scrolling. Loading a page directly was fine, which is why it only appeared after visiting Home. It was also measured with its own height included, so it could only ever grow.
+
+**Fix** (`components/teddy/RoamingTeddy.tsx`, `app/styles/roaming.css`):
+- The layer defaults to `height: 0` in CSS.
+- `clearPrints()` collapses it (and cancels running print animations) whenever Teddy stops, including on navigation away from Home.
+- `sizePrints()` collapses it *before* reading `scrollHeight`, so it never counts itself.
+
+**Verified** on a production build: Home → Puppies → How it works → Happy families → Gone home → FAQ → Contact → Home. Blank space below the footer is 0px on every page (sub-pixel 1px on FAQ, same as a direct load), and Teddy restarts correctly back on Home.
+
+**Lesson.** When a component writes inline styles onto shared DOM (sizes, `data-*` on `<html>`), its cleanup must undo every one of them. Client-side navigation keeps the DOM alive, so leftovers persist across pages.
+

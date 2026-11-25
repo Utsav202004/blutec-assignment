@@ -61,6 +61,7 @@ html[data-pup] .pup-stop > .pup-buddy {
   pointer-events: none;
   position: absolute;
   inset: 0 0 auto;
+  height: 0; /* sized by RoamingTeddy only while he's active */
   overflow: clip;
 }
 
