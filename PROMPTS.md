@@ -173,3 +173,51 @@ Full checklist: [ANALYSIS.md](ANALYSIS.md)
 - **Validation messages aren't in the original's client JS** (validation happens in a server action), so I wrote clear, friendly messages of my own.
 - **Bugs caught by testing:** two quick "previous" clicks moved only one photo (stale state; fixed with functional `setState`), and page scroll stayed locked after closing the viewer (fixed by unlocking on close as well as on the dialog's `close` event). The page-turn animation also ran on first load; it now runs only after the reader changes photo.
 - **Next 16 route types (`PageProps<"/puppies/[slug]">`) are generated,** so `next typegen` has to run before `tsc` for dynamic routes.
+
+---
+
+## Prompt 6 — "Yes, continue" (2026-11-25)
+
+> Yes, continue
+
+### Phase 3 (part 4) — How it works, Happy families, Gone home, FAQ, Contact
+**What was built**
+- `app/{how-it-works,happy-families,gone-home,faq,contact}/page.tsx`: thin route files with the original's titles and meta descriptions. They render page components in `components/pages/`.
+- `components/how/TwoWaysHome.tsx`: the "In Dubai / Imported" tab switch. It follows the WAI-ARIA tabs pattern (`role="tab"`, `aria-selected`, roving `tabIndex`, arrow-key navigation, hidden panels), and its sliding thumb is driven by a `--at` CSS variable.
+- `components/families/PhotoWall.tsx` + `components/ui/PhotoViewer.tsx`: 64 taped polaroids built from `family-photos.json`, plus a reusable full-screen viewer (arrow keys, swipe, Esc, captions).
+- `components/pages/GoneHomePage.tsx`: 27 "tickets home" built from the gone-home puppy data.
+- `components/faq/NoticeBoard.tsx` + `lib/faqs.ts`: the cork-board FAQ with live search.
+- `components/contact/LetterForm.tsx`: the "Dear TeddyPups, my name is ___" letter form, with a sealing → posting → sent animation.
+
+**Key decisions**
+- **Generated first, then data-driven.** The generator from earlier phases now also converts bare Teddy illustrations, telling the pose apart by the head's transform. Repeated content (64 photos, 27 tickets, 9 FAQs) was then replaced with `.map()` over data files. That took Happy families from ~3,000 generated lines to under 100, and Gone home from ~1,600 to ~120. The original's cycling tilts, tape colours and reveal delays are kept as small arrays.
+- **Behaviour matched by reading the original's client bundle.** The FAQ board and the letter form are client-rendered on the original, so I read its JS to get the exact rules, then wrote my own components:
+  - **FAQ:** search filters by question + answer, matches are wrapped in `<mark>`, notes whose *answer* matches unfold automatically, the count switches between "9 notes on the board" and "N notes found", there's an empty-state note, and it's a single-open accordion otherwise. Collapsed answers are `inert`.
+  - **Letter form:** phases writing → sealing (750ms) → posting (1s) → sent. The layout height is held steady during the animation, focus moves to the confirmation, and errors are listed at the top of the letter with the first bad blank focused. It reuses `validateEnquiry()` and `/api/enquiry`.
+- **Removed things that shouldn't be cloned:**
+  - the original's Cloudflare email-obfuscation link (`/cdn-cgi/l/email-protection…`);
+  - its third-party WhatsApp number;
+  - the agency URL it used as the "Open in Google Maps" link.
+
+  All of these now come from `lib/site.ts`.
+- **A systematic CSS audit instead of eyeballing.** A script collects every class used in the components and checks which ones the original styles but my compiled CSS doesn't. It found exactly one: `measure` (max-width 62ch), which explained a 30px difference on How it works.
+
+**Verification**
+- Page heights are identical to the original on all five pages, at both 1440px and 375px:
+
+  | Page | 1440px | 375px |
+  |---|---|---|
+  | How it works | 3792 | 6675 |
+  | Happy families | 8169 | 31032 |
+  | Gone home | 2369 | 5949 |
+  | FAQ | 1681 | 1785 |
+  | Contact | 1255 | 2278 |
+
+- **Tabs:** clicking switches panels and the thumb; ArrowLeft moves both selection and focus.
+- **FAQ:** a second note closes the first; "korea" → "2 notes found", 2 highlights, 2 unfolded; "zzzz" → empty state; clearing restores "9 notes on the board".
+- **Contact:** an empty submit lists 2 errors and focuses the name blank; a valid submit goes sealing → posting (~800ms) → sent (~1.8s), with focus on the confirmation.
+- **Photo wall:** photo 46 opens with its caption, → moves to 47/64, and Close/Esc both unlock page scroll.
+
+**Challenges**
+- **Gone home was 104px shorter.** The ticket's route label isn't always "TeddyPups": showroom puppies say "Dubai showroom", which wraps to two lines. Found it by comparing ticket heights one by one against the original.
+- **The viewer left page scroll locked after closing.** The unlock relied on the dialog's asynchronous `close` event. Esc is now handled through the synchronous `cancel` event, and scroll is unlocked whenever the viewer's state is closed. The same fix went into the puppy gallery.

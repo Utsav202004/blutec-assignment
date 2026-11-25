@@ -15,6 +15,11 @@
 @import "./styles/curtain.css";
 @import "./styles/puppies.css";
 @import "./styles/puppy-detail.css";
+@import "./styles/how.css";
+@import "./styles/families.css";
+@import "./styles/gone.css";
+@import "./styles/faq.css";
+@import "./styles/contact.css";
 
 /*
  * Design tokens — copied from the reference site's compiled CSS so colours,
@@ -128,6 +133,9 @@ body {
 }
 @utility text-huge {
   font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+}
+@utility measure {
+  max-width: 62ch;
 }
 @utility text-giant {
   font-size: clamp(3.1rem, 9.4vw, 9.75rem);

@@ -65,10 +65,18 @@ export function PuppyGallery({
       if (e.key === "ArrowRight") stepRef.current(1);
       if (e.key === "ArrowLeft") stepRef.current(-1);
     };
+    // Esc fires "cancel" synchronously: close and unlock right away
+    const onCancel = (e: Event) => {
+      e.preventDefault();
+      d.close();
+      unlockScroll();
+    };
     window.addEventListener("keydown", onKey);
+    d.addEventListener("cancel", onCancel);
     d.addEventListener("close", unlockScroll);
     return () => {
       window.removeEventListener("keydown", onKey);
+      d.removeEventListener("cancel", onCancel);
       d.removeEventListener("close", unlockScroll);
     };
   }, []);
