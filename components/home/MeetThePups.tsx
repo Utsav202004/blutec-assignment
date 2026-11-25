@@ -11,7 +11,8 @@ import { Teddy } from "@/components/illustrations/Teddy";
 const doorColours = ["#a24a1a", "#5a3a28", "#d4893f", "#b8644a", "#7a4a2e"];
 
 /** Desktop gets the pinned, sideways-scrolling hallway */
-const PIN_QUERY = "(min-width: 1024px) and (min-height: 520px) and (prefers-reduced-motion: no-preference)";
+const PIN_QUERY =
+  "(min-width: 1024px) and (min-height: 520px) and (prefers-reduced-motion: no-preference)";
 
 /**
  * "Meet the pups". On desktop the section is pinned (position: sticky) and is
@@ -55,7 +56,11 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
       // so the hallway length — and the section height — match exactly.
       section.style.removeProperty("--door-w");
       const door = track.querySelector<HTMLElement>(".tp-door");
-      if (door) section.style.setProperty("--door-w", `${Math.round(door.getBoundingClientRect().width)}px`);
+      if (door)
+        section.style.setProperty(
+          "--door-w",
+          `${Math.round(door.getBoundingClientRect().width)}px`,
+        );
       distance = Math.max(0, track.scrollWidth - window.innerWidth);
       range = Math.round(distance / SPEED); // the reference rounds this too
       wrap.style.height = `calc(${range}px + 100vh)`;
@@ -96,11 +101,14 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
 
   return (
     <section
+      data-pup-scene="true"
       ref={sectionRef}
       data-tone="light"
       data-pinned={pinned ? "" : undefined}
       className="tp-scene tp-meet"
-      style={{ "--sky-top": "#fff1d8", "--sky-bottom": "#fbe3b4" } as CSSProperties}
+      style={
+        { "--sky-top": "#fff1d8", "--sky-bottom": "#fbe3b4" } as CSSProperties
+      }
       aria-labelledby="meet-title"
     >
       <div>
@@ -120,16 +128,27 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
           </header>
 
           <div className="tp-meet__hall">
-            <ol ref={trackRef} className="tp-meet__track" aria-label="Puppies looking for a family">
+            <ol
+              ref={trackRef}
+              data-treadmill="true"
+              className="tp-meet__track"
+              aria-label="Puppies looking for a family"
+            >
               {puppies.map((p, i) => (
                 <li key={p.slug} className="tp-door" data-open={isOpen(i)}>
                   <Link
                     className="tp-door__link"
-                    style={{ "--door": doorColours[i % doorColours.length] } as CSSProperties}
+                    style={
+                      {
+                        "--door": doorColours[i % doorColours.length],
+                      } as CSSProperties
+                    }
                     href={`/puppies/${p.slug}`}
                   >
                     <span className="tp-door__plate">
-                      <span className="font-plush tp-door__name">{p.displayName}</span>
+                      <span className="font-plush tp-door__name">
+                        {p.displayName}
+                      </span>
                       <span className="tp-door__meta">
                         {puppyBlurb(p)}
                         {hasVideo(p) && ", with video"}
@@ -144,7 +163,11 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
                           sizes="(min-width: 1024px) 15rem, 44vw"
                           placeholder={p.cover.blurDataUrl ? "blur" : "empty"}
                           blurDataURL={p.cover.blurDataUrl}
-                          style={{ objectFit: "cover", objectPosition: focal(p.cover), backgroundColor: p.cover.color }}
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: focal(p.cover),
+                            backgroundColor: p.cover.color,
+                          }}
                         />
                       </span>
                       <span aria-hidden="true" className="tp-door__way">
@@ -153,7 +176,9 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
                           <span className="tp-door__knob" />
                         </span>
                       </span>
-                      <span className="tp-door__tag font-scrawl">Available</span>
+                      <span className="tp-door__tag font-scrawl">
+                        Available
+                      </span>
                     </span>
                   </Link>
                 </li>
@@ -161,13 +186,21 @@ export function MeetThePups({ puppies }: { puppies: Puppy[] }) {
               <li className="tp-door tp-door--all" data-open="true">
                 <Link className="tp-door__link" href="/puppies">
                   <span className="tp-door__frame tp-door__frame--all">
-                    <span className="font-plush tp-door__all">Meet them all</span>
+                    <span className="font-plush tp-door__all">
+                      Meet them all
+                    </span>
                   </span>
                 </Link>
               </li>
             </ol>
             <div aria-hidden="true" className="tp-meet__floor" />
-            <Teddy pose="sit" className="tp-meet__teddy" label="Teddy waiting by the doors" bubble="pick a door!" />
+            <Teddy
+              pose="sit"
+              className="tp-meet__teddy"
+              stop
+              label="Teddy waiting by the doors"
+              bubble="pick a door!"
+            />
           </div>
         </div>
       </div>

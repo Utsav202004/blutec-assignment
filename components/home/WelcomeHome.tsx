@@ -7,6 +7,7 @@ import { Teddy } from "@/components/illustrations/Teddy";
 export function WelcomeHome() {
   return (
     <section
+      data-pup-scene="true"
       data-tone="dark"
       className="tp-scene tp-home"
       style={
@@ -59,7 +60,12 @@ export function WelcomeHome() {
         <span aria-hidden="true" className="tp-house__mat font-scrawl">
           welcome home
         </span>
-        <Teddy pose="bow" className="tp-house__teddy" label="Teddy the puppy" />
+        <Teddy
+          pose="bow"
+          className="tp-house__teddy"
+          stop
+          label="Teddy the puppy"
+        />
       </div>
       <div className="tp-home__actions gutter">
         <a

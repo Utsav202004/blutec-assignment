@@ -332,3 +332,50 @@ All tests ran against a **production build** (`next build && next start`), not t
 - **This Mac's resolver had cached a "not found" answer** from before the record existed, so local `curl` failed while public DNS was already correct. I tested HTTPS by pinning a Vercel IP (`curl --resolve`) instead of waiting for the cache to expire.
 - **The Vercel CLI refuses `env rm` without the user's explicit approval** (even with `--yes`), treating it as destructive. `vercel env update` changes the value in place, so nothing needed deleting.
 
+---
+
+## Prompts 12–14 — "is the clone complete ?" / "Build roaming Teddy" (2026-11-25)
+
+> is the clone complete ?
+>
+> Build roaming Teddy
+
+**Honest answer to "is it complete?"** Every page, layout and core interaction was done. The visible gap was the original's **roaming Teddy**: one animated Teddy that walks between the home sections as you scroll, leaves paw prints, and drives a few dependent effects (hero photos sinking once he leaves, the front door opening when he arrives). Smaller items: the paw-press cursor on hover, procedurally drawn card outlines, my own form messages, and placeholder contact details. You chose to build the roaming Teddy.
+
+### How it was built
+**Studied the original first.** I read its controller in the minified client bundle to understand the model, then wrote my own implementation:
+- **Stops:** each static Teddy (`data-pup-stop`) is a waypoint, with a pose, facing direction, an optional behaviour (`peekaboo`, `basket`, `tilt`, `treadmill`) and a "behind" flag (quilt / basket front).
+- **Holds:** each stop gets a range of scroll positions during which Teddy sits there. That's while the stop is in the middle band of the screen (42–78% on desktop) and fully visible. Stops inside the pinned hallway hold for the whole pinned range.
+- **Travel:** between holds, Teddy moves from one stop to the next with progress tied to scroll position (eased). A soft clamp keeps him on screen while he walks, and he hops when leaving or entering a "behind" stop.
+
+**Files**
+- `lib/teddy-journey.ts`: pure geometry. It measures stops, detects sticky (pinned) ancestors, computes holds and travel gaps, and returns Teddy's position for any scroll value.
+- `components/teddy/RoamingTeddy.tsx`: a fixed layer with the actor. React state changes only when pose, gait or facing changes; position and scale are written straight to `transform` every frame. It handles:
+  - paw prints from a recycled pool of 24 elements, faded with the Web Animations API;
+  - setting `data-here` / `data-visited` on sections;
+  - the "coming?" bubble when you stop mid-walk;
+  - random replies when tapped;
+  - the hero "peekaboo!" intro.
+- `components/illustrations/TeddyRunner.tsx`: the curtain's running Teddy, extracted and reused for walking (CSS gait: legs, body bob, tail wag).
+- `app/styles/roaming.css`: layer, actor and paw-print CSS plus the `html[data-pup]` rules, ported from the original, and the gait animations.
+- `components/home/HeroLineup.tsx`: the hero photo rotation (see below).
+- Also restored the `data-pup-stop` / `data-pup-scene` / `data-treadmill` hooks that the markup converter had stripped, and added the missing paw-press cursor.
+
+**Phones (lane mode):** Teddy starts in the hero and ends in the footer basket. In between, he peeks up above the WhatsApp bar from alternating screen edges in each section, dipping below the edge as he switches sides.
+
+**Hero photo rotation (found while reading the original's code).** When the visitor is idle and Teddy is in the hero, one arch at a time ducks into the quilt and pops back up with a different puppy (all 15 rotate through the 6 seats), showing its name tag for 1.8s. The next photo is preloaded in a hidden "wings" slot, and the pauses (1.7–2.8s) come from the original.
+
+### Testing
+- **Desktop route** (scroll swept in 10px steps): hero 0–260 → hallway 900–4130 (the whole pinned range, walking on the spot while the doors slide) → signpost → phone → passport → dusk wall → night sky → front door → basket at the very bottom. The door opens on arrival, and the layer goes behind the quilt and basket at the right moments.
+- **Phones:** 8 holds, with Teddy peeking from the left in the hallway section, the right in "Two ways", and so on.
+- **Other pages:** inner pages keep their static Teddys (no roaming), and navigating Home → Contact → Home turns roaming on and off correctly.
+- **Tapping** shows a reply bubble. Page height and width are unchanged (main still 11993px, no horizontal overflow).
+- **Lighthouse on home:** still 100 on mobile and desktop, with 0 console errors.
+
+### Challenges
+- **Teddy never reached the basket, and skipped two stops.** The last four stops sit close together near the end of the page, and the minimum travel gaps pushed the final holds past the page end. Fixes:
+  - the original's "leave a stop once its section nears the top of the screen" rule;
+  - a pass that pulls the tail of the route back so the last stop is always reachable;
+  - a minimum hold per stop, so a long sideways walk (dusk on the right → night on the left) just goes quicker instead of skipping a stop.
+- **Background-tab testing.** The preview tab was hidden, so the browser paused `requestAnimationFrame` and skipped `ResizeObserver` notifications. Teddy now also updates on scroll events and re-measures shortly after start, which makes him more robust for real visitors too.
+

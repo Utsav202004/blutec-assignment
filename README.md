@@ -42,7 +42,8 @@ There are no UI or animation libraries. Interactions use native browser features
 ## Features
 
 - **Responsive** at every breakpoint. Page heights match the original at 375 / 768 / 1024 / 1440px. Phones get a full-screen menu and a sticky WhatsApp/Call bar.
-- **Animations:** a page-change "curtain", a pinned horizontal scroll section, scroll-in reveals, page-turn gallery transitions, idle mascot animations. All of them respect `prefers-reduced-motion`.
+- **Roaming Teddy:** on the home page one Teddy walks from section to section as you scroll. He takes each section's pose, hops out from behind the quilt, walks on the spot in the pinned hallway, leaves fading paw prints, asks "coming?" if you stop mid-way, opens the front door when he arrives, and responds to taps. On phones he peeks up from alternating screen edges.
+- **Animations:** a page-change "curtain", a pinned horizontal scroll section, a rotating hero photo line-up, scroll-in reveals, page-turn gallery transitions, idle mascot animations. All of them respect `prefers-reduced-motion`.
 - **Accessibility:** a skip link, a native `<dialog>` for menus and viewers (focus trap, Esc), WAI-ARIA tabs, `aria-expanded` accordions with `inert` collapsed panels, labelled form fields with `aria-invalid` / `aria-describedby`, and focus moved to errors and confirmations.
 - **Performance:** every page is statically prerendered, images are optimised, the LCP image is prioritised, and non-critical fonts aren't preloaded.
 
@@ -71,12 +72,14 @@ components/
   pages/                Page bodies for the content pages
   puppies/ puppy/       Listing filters + cards, detail gallery + enquiry form
   how/ faq/ contact/ families/   Interactive pieces for those pages
-  illustrations/        Teddy the mascot (4 poses), stars
+  illustrations/        Teddy the mascot (4 poses + a walking rig), stars
+  teddy/                RoamingTeddy: the scroll-driven Teddy that visits each section
   ui/                   PawIcon, ScrollReveal, PhotoViewer
 lib/
   site.ts               Brand name, contact details, WhatsApp link helper, navigation
   puppies.ts            Typed puppy data + helpers (filters, blurbs, prev/next)
   sketch.ts             Seeded generator for the hand-drawn card shapes
+  teddy-journey.ts      Geometry for the roaming Teddy (stops, scroll holds, travel path)
   enquiry.ts            Shared form validation (browser + server)
   faqs.ts               FAQ content
   data/*.json           Puppy and family-photo data
@@ -135,4 +138,4 @@ npx vercel --prod   # production deployment
 - **Content and design** (copy, photos, illustrations, layout) belong to the original site and were reproduced for this assignment only. The data and media were exported from the original's public pages and stored locally in `public/assets/media`.
 - **Contact details are placeholders** (`+971 50 000 0000`, `hello@example.com`). The original's WhatsApp link points to a third party, so it wasn't copied.
 - **Enquiry forms** validate in the browser and on the server, but `/api/enquiry` only logs a submission. Connect an email service or CRM in [`app/api/enquiry/route.ts`](app/api/enquiry/route.ts) to deliver them.
-- **Simplified on purpose:** the original moves one animated Teddy between sections with a custom JS rig. The clone renders a static pose in each section, with idle animations and a speech bubble on tap.
+- **Teddy's rig is simpler than the original's:** the original animates Teddy with a fully procedural skeleton (yawns, head tilts, looking at what you hover). The clone uses four drawn poses plus a CSS walk cycle, which gives the same route and movement with far less code.

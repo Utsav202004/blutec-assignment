@@ -6,6 +6,7 @@ import { Teddy } from "@/components/illustrations/Teddy";
 export function TwoWays() {
   return (
     <section
+      data-pup-scene="true"
       data-tone="light"
       className="tp-scene tp-paths"
       style={
@@ -147,8 +148,8 @@ export function TwoWays() {
               </div>
             </div>
             <p className="tp-way__text">
-              Exclusive Korean teacup puppies, delivered. Order from the world&apos;s
-              most reputable breeders and let us handle the import.
+              Exclusive Korean teacup puppies, delivered. Order from the
+              world&apos;s most reputable breeders and let us handle the import.
             </p>
             <Link className="btn btn-primary" href="/puppies?origin=imported">
               See imported puppies
@@ -157,6 +158,7 @@ export function TwoWays() {
           <Teddy
             pose="sit"
             className="tp-fork__teddy"
+            stop
             label="Teddy the puppy"
           />
         </div>

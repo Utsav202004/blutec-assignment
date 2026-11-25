@@ -73,6 +73,7 @@ export function Journey() {
 
   return (
     <section
+      data-pup-scene="true"
       data-tone="light"
       className="tp-scene tp-chat"
       style={
@@ -99,8 +100,9 @@ export function Journey() {
               </span>
               <h3 className="font-plush tp-chat__title">Choose your breed</h3>
               <p className="tp-chat__text">
-                Select your preferred breed or tell us what you&apos;re looking for.
-                We&apos;ll guide you based on availability and your lifestyle.
+                Select your preferred breed or tell us what you&apos;re looking
+                for. We&apos;ll guide you based on availability and your
+                lifestyle.
               </p>
             </li>
             <li className="tp-chat__step" {...stepState(1)}>
@@ -162,9 +164,9 @@ export function Journey() {
               >
                 <div className="tp-msg tp-msg--them">
                   <p>
-                    Select your preferred breed or tell us what you&apos;re looking
-                    for. We&apos;ll guide you based on availability and your
-                    lifestyle.
+                    Select your preferred breed or tell us what you&apos;re
+                    looking for. We&apos;ll guide you based on availability and
+                    your lifestyle.
                   </p>
                   <ul className="tp-chips" aria-label="Breeds we have now">
                     <li>
@@ -338,6 +340,7 @@ export function Journey() {
           <Teddy
             pose="sit"
             className="tp-chat__teddy"
+            stop
             label="Teddy the puppy"
           />
         </div>

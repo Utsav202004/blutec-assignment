@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WhatsAppBar } from "@/components/layout/WhatsAppBar";
 import { PageCurtain } from "@/components/layout/PageCurtain";
+import { RoamingTeddy } from "@/components/teddy/RoamingTeddy";
 import "./globals.css";
 
 // next/font self-hosts these at build time (no requests to Google at runtime)
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <RoamingTeddy />
         <WhatsAppBar />
       </body>
     </html>

@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export function HappyFamilies() {
   return (
     <section
+      data-pup-scene="true"
       data-tone="dark"
       className="tp-scene tp-dusk"
       style={
@@ -357,6 +358,7 @@ export function HappyFamilies() {
             <Teddy
               pose="sit"
               className="tp-dusk__teddy"
+              stop
               label="Teddy the puppy"
             />
           </div>

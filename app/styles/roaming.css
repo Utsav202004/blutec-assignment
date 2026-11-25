@@ -1,0 +1,149 @@
+/*
+ * Roaming Teddy: one Teddy (in a fixed layer) travels between the static
+ * "stops" as you scroll. Layer/actor/paw-print rules are ported from the
+ * reference site's compiled CSS; the gait rules at the bottom are clone
+ * additions that drive the runner SVG while Teddy walks.
+ * State comes from components/teddy/RoamingTeddy.tsx.
+ */
+
+/* While the roaming Teddy is live, the static Teddys at each stop hide */
+html[data-pup] .pup-stop > .pup-buddy {
+  visibility: hidden;
+}
+
+.pup-layer {
+  z-index: 30;
+  pointer-events: none;
+  contain: layout paint style;
+  position: fixed;
+  inset: 0;
+  overflow: clip;
+}
+
+/* Behind the hero quilt / footer basket */
+.pup-layer[data-front="false"] {
+  z-index: 15;
+}
+
+.pup-actor {
+  will-change: transform;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pup-actor__body {
+  transform-origin: 0 0;
+  width: 300px;
+}
+
+.pup-actor__body > svg {
+  width: 300px;
+  height: 240px;
+  display: block;
+  overflow: visible;
+}
+
+.pup-actor .pup-actor__body > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+
+.pup-bubble-at {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Paw prints are placed in page coordinates, so they scroll with the page */
+.pup-prints {
+  z-index: 5;
+  pointer-events: none;
+  position: absolute;
+  inset: 0 0 auto;
+  overflow: clip;
+}
+
+.pup-prints > svg {
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  fill: var(--color-toffee);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pup-buddy[data-live] > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+
+:is(.pup-buddy, .pup-actor) svg [opacity="0"],
+:is(.pup-buddy, .pup-actor) svg [opacity="0"] * {
+  pointer-events: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.pup-buddy[data-live] > svg, .pup-actor svg) :is(path, ellipse, circle) {
+    cursor:
+      url(/assets/cursor/paw-press.svg) 9 6,
+      pointer;
+  }
+}
+
+/* The hero photos sink into the quilt once Teddy has left the hero */
+.tp-hero[data-here="false"] :is(.tp-lineup__pup, .tp-lineup__ghost) {
+  translate: 0 58%;
+}
+
+/* The front door stays shut until Teddy gets there, then swings open */
+html[data-pup] .tp-house__door {
+  transition: transform 1.2s cubic-bezier(0.3, 1.25, 0.5, 1) 0.3s;
+  animation: none;
+  transform: rotateY(0);
+}
+
+html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
+  transform: rotateY(-102deg);
+}
+
+/* ---- Clone additions: gait for the runner SVG while Teddy travels ---- */
+.pup-actor :is(.tp-runner__leg, .tp-runner__tail, .tp-runner__ear) {
+  transform-box: view-box;
+}
+
+.pup-actor[data-gait="walk"] :is(.tp-runner__leg--fn, .tp-runner__leg--bf) {
+  animation: 0.42s ease-in-out infinite alternate tp-runner-leg-a;
+}
+
+.pup-actor[data-gait="walk"] :is(.tp-runner__leg--ff, .tp-runner__leg--bn) {
+  animation: 0.42s ease-in-out infinite alternate tp-runner-leg-b;
+}
+
+.pup-actor[data-gait="walk"] .tp-runner__body {
+  animation: 0.21s ease-in-out infinite alternate tp-runner-bob;
+}
+
+.pup-actor:is([data-gait="walk"], [data-gait="stand"]) .tp-runner__tail {
+  animation: 0.3s ease-in-out infinite alternate tp-runner-wag;
+}
+
+/* Little bounce whenever Teddy settles into a new pose */
+.pup-actor__pose {
+  transform-box: view-box;
+  transform-origin: 150px 228px;
+  animation: pup-settle 0.45s var(--ease-pounce);
+}
+
+@keyframes pup-settle {
+  from {
+    transform: scale(0.94, 1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pup-actor * {
+    animation: none !important;
+  }
+}

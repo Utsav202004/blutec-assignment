@@ -16,12 +16,19 @@ type TeddyProps = {
   lane?: boolean;
   /** Mirror Teddy so he faces left */
   facing?: "left" | "right";
+  /** A stop on the roaming Teddy's route (see components/teddy/RoamingTeddy) */
+  stop?: boolean;
+  /** Stop behaviour: "peekaboo" (hero intro), "basket" (footer), "tilt" */
+  act?: string;
+  /** Teddy sits behind something here (quilt, basket front) */
+  behind?: boolean;
 };
 
 /**
- * Teddy, the TeddyPups mascot. The original moves one animated Teddy between
- * these "stops" with a JS rig; here each stop renders its own static pose with
- * CSS idle animations, and tapping Teddy pops a speech bubble.
+ * Teddy, the TeddyPups mascot, drawn in one of four poses. Each instance
+ * is visible on its own (with idle animations and a speech bubble on tap).
+ * Instances marked `stop` are also waypoints for the roaming Teddy: while
+ * he's active they hide (html[data-pup]) and he walks between them.
  */
 export function Teddy({
   pose,
@@ -31,6 +38,9 @@ export function Teddy({
   greet,
   lane,
   facing = "right",
+  stop,
+  act,
+  behind,
 }: TeddyProps) {
   const [show, setShow] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
@@ -59,6 +69,9 @@ export function Teddy({
       data-pose={pose}
       data-facing={facing}
       data-lane={lane ? "true" : undefined}
+      data-pup-stop={stop ? "true" : undefined}
+      data-act={act}
+      data-behind={behind ? "true" : undefined}
       className={`pup-stop ${className}`}
     >
       <div

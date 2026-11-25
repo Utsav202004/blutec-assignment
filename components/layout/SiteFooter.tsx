@@ -65,7 +65,7 @@ export function SiteFooter() {
               <path d="M116 145 A96 12 0 0 1 308 145" className="tp-basket__rim-line" />
               <path d="M116 145 A96 12 0 0 1 308 145" className="tp-basket__rim" />
             </svg>
-            <Teddy pose="snug" className="tp-basket__pup" label="Teddy, sitting snug in his basket" bubble="night night!" lane />
+            <Teddy pose="snug" className="tp-basket__pup" label="Teddy, sitting snug in his basket" bubble="night night!" lane stop act="basket" behind />
             <svg aria-hidden="true" viewBox="0 0 300 240" className="tp-basket__front">
               <path d="M116 145 C118 180 126 214 138 232 L286 232 C298 214 306 180 308 145 A96 12 0 0 1 116 145 Z" className="tp-basket__body" />
               <path d="M121 178 Q212 197 303 178 M127 206 Q212 223 297 206" className="tp-basket__weave" />

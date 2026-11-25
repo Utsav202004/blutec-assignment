@@ -4,6 +4,7 @@ import { Teddy } from "@/components/illustrations/Teddy";
 export function Passport() {
   return (
     <section
+      data-pup-scene="true"
       data-tone="light"
       className="tp-scene tp-passport"
       style={
@@ -26,17 +27,20 @@ export function Passport() {
             <Teddy
               pose="sit"
               className="tp-book__teddy"
+              stop
               label="Teddy the puppy"
             />
           </div>
           <ul className="tp-book__page tp-book__page--right">
             <li
               className="tp-entry"
-              style={{
-                "--ink-stamp": "#a24a1a",
-                "--tilt": "-8deg",
-                "--i": "0",
-              } as React.CSSProperties}
+              style={
+                {
+                  "--ink-stamp": "#a24a1a",
+                  "--tilt": "-8deg",
+                  "--i": "0",
+                } as React.CSSProperties
+              }
             >
               <span className="tp-stamp tp-stamp--round">
                 <svg
@@ -72,7 +76,13 @@ export function Passport() {
             </li>
             <li
               className="tp-entry"
-              style={{ "--ink-stamp": "#1f6b45", "--tilt": "5deg", "--i": "1" } as React.CSSProperties}
+              style={
+                {
+                  "--ink-stamp": "#1f6b45",
+                  "--tilt": "5deg",
+                  "--i": "1",
+                } as React.CSSProperties
+              }
             >
               <span className="tp-stamp tp-stamp--ticket">
                 <svg
@@ -109,11 +119,13 @@ export function Passport() {
             </li>
             <li
               className="tp-entry"
-              style={{
-                "--ink-stamp": "#5a3a28",
-                "--tilt": "-4deg",
-                "--i": "2",
-              } as React.CSSProperties}
+              style={
+                {
+                  "--ink-stamp": "#5a3a28",
+                  "--tilt": "-4deg",
+                  "--i": "2",
+                } as React.CSSProperties
+              }
             >
               <span className="tp-stamp tp-stamp--oval">
                 <svg
@@ -147,7 +159,13 @@ export function Passport() {
             </li>
             <li
               className="tp-entry"
-              style={{ "--ink-stamp": "#c2622b", "--tilt": "7deg", "--i": "3" } as React.CSSProperties}
+              style={
+                {
+                  "--ink-stamp": "#c2622b",
+                  "--tilt": "7deg",
+                  "--i": "3",
+                } as React.CSSProperties
+              }
             >
               <span className="tp-stamp tp-stamp--scallop">
                 <svg

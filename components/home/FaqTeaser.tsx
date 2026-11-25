@@ -5,6 +5,7 @@ import { Teddy } from "@/components/illustrations/Teddy";
 export function FaqTeaser() {
   return (
     <section
+      data-pup-scene="true"
       data-tone="dark"
       className="tp-scene tp-night"
       style={
@@ -208,6 +209,8 @@ export function FaqTeaser() {
             <Teddy
               pose="sit"
               className="tp-night__teddy"
+              stop
+              act="tilt"
               label="Teddy the puppy"
             />
           </div>
