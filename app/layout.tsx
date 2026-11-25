@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Figtree, Fraunces, Shantell_Sans } from "next/font/google";
 import { site } from "@/lib/site";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { WhatsAppBar } from "@/components/layout/WhatsAppBar";
 import "./globals.css";
 
 // next/font self-hosts these at build time (no requests to Google at runtime)
@@ -44,7 +47,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${fraunces.variable} ${figtree.variable} ${shantell.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-full bg-cocoa px-4 py-2 text-milk focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" tabIndex={-1} className="relative pt-[var(--header-h)] outline-none">
+          {children}
+        </main>
+        <SiteFooter />
+        <WhatsAppBar />
+      </body>
     </html>
   );
 }

@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Component styles (one file per area of the site) */
+@import "./styles/header.css";
+@import "./styles/footer.css";
+@import "./styles/mascot.css";
+@import "./styles/hero.css";
+@import "./styles/meet.css";
+
 /*
  * Design tokens — copied from the reference site's compiled CSS so colours,
  * fonts and easings match exactly. Anything declared in @theme becomes a
@@ -100,6 +107,21 @@ body {
 
 @utility gutter {
   padding-inline: var(--gutter);
+}
+
+/* Fluid type sizes used across sections */
+@utility text-lede {
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  line-height: 1.5;
+}
+@utility text-big {
+  font-size: clamp(2rem, 4.2vw, 4rem);
+}
+@utility text-huge {
+  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+}
+@utility text-giant {
+  font-size: clamp(3.1rem, 9.4vw, 9.75rem);
 }
 
 /* ---------- Buttons ---------- */

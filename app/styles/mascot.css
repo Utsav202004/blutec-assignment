@@ -1,0 +1,152 @@
+/*
+ * Teddy the mascot (static poses + idle animations)
+ * Ported from the reference site's compiled CSS (selectors kept so the markup maps 1:1).
+ */
+
+.pup-buddy {
+  pointer-events: none;
+  position: relative;
+}
+
+.pup-stop {
+  pointer-events: none;
+}
+
+.pup-stop > .pup-buddy {
+  width: 100%;
+}
+
+.pup-bubble-at {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pup-bubble {
+  border: 2.5px solid var(--color-cocoa);
+  background: var(--color-milk);
+  color: var(--color-cocoa);
+  font-family: var(--font-hand);
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 30% 100%;
+  transition:
+    scale 0.4s var(--ease-pounce),
+    opacity 0.18s ease-out;
+  border-radius: 1.1rem 1.1rem 1.1rem 0.25rem;
+  padding: 0.3rem 0.85rem 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  translate: -50%;
+  scale: 0.4;
+  box-shadow: 2px 3px #2a170e2e;
+}
+
+.pup-bubble[data-show="true"] {
+  opacity: 1;
+  scale: 1;
+}
+
+.pup-buddy > svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pup-buddy > .pup-bubble {
+  bottom: 84%;
+  left: 72%;
+}
+
+.pup-buddy[data-facing="left"] > .pup-bubble {
+  left: 28%;
+}
+
+.pup-buddy[data-live] > svg :is(path, ellipse, circle) {
+  pointer-events: visiblePainted;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tp-basket__pup .pup-buddy:not([data-live]) > svg {
+    transform-origin: 70% 66%;
+    animation: 3.8s ease-in-out infinite tp-breathe;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tp-basket__pup .pup-buddy:not([data-live]) [data-p="open"] {
+    animation: 6.2s infinite tp-blink-open;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tp-basket__pup .pup-buddy:not([data-live]) [data-p="shut"] {
+    animation: 6.2s infinite tp-blink-shut;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tp-basket__pup .pup-buddy:not([data-live]) [data-p="earR"] {
+    transform-box: view-box;
+    transform-origin: 250px 82px;
+    animation: 7.4s ease-in-out 2.2s infinite tp-ear-twitch;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference),
+  (pointer: coarse) and (max-height: 519px) and (prefers-reduced-motion: no-preference) {
+  .pup-stop:not([data-lane]) {
+    display: none;
+  }
+}
+
+@keyframes tp-breathe {
+  50% {
+    scale: 1 1.014;
+  }
+}
+
+@keyframes tp-blink-open {
+  0%,
+  92%,
+  97%,
+  to {
+    opacity: 1;
+  }
+  94.5% {
+    opacity: 0;
+  }
+}
+
+@keyframes tp-blink-shut {
+  0%,
+  92%,
+  97%,
+  to {
+    opacity: 0;
+  }
+  94.5% {
+    opacity: 1;
+  }
+}
+
+@keyframes tp-ear-twitch {
+  0%,
+  84%,
+  to {
+    rotate: 0deg;
+  }
+  87% {
+    rotate: -11deg;
+  }
+  90% {
+    rotate: 5deg;
+  }
+  93% {
+    rotate: -2deg;
+  }
+}

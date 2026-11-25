@@ -51,3 +51,8 @@ export const footerNav = [
   { label: "FAQ", href: "/faq" },
   { label: "Visit & contact", href: "/contact" },
 ] as const;
+
+/** Whether a nav item should be highlighted for the current path. */
+export function isActivePath(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
