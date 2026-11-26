@@ -1,14 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useState, type CSSProperties } from "react";
 import type { Media } from "@/lib/puppies";
 import { PawIcon } from "@/components/ui/PawIcon";
 import { PhotoViewer } from "@/components/ui/PhotoViewer";
+import { Polaroid } from "@/components/families/Polaroid";
 
-// The reference cycles through these tilts, tape colours and reveal delays
-const tilts = [-2.2, 1.6, -0.9, 2.4, -1.5, 0.8, -2.6, 1.2];
-const tapes = ["#f6d79a", "#f9cdbf", "#cfe5f6", "#f6d79a", "#e9dcc4"];
+const SIZES = "(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 45vw";
 
 /**
  * Wall of taped-up polaroids from TeddyPups families. Each one drops onto the
@@ -31,34 +29,10 @@ export function PhotoWall({ photos }: { photos: Media[] }) {
             <button
               type="button"
               className="tp-wall__print"
-              aria-label={`Open photo ${i + 1} of ${photos.length}`}
+              aria-label={`Open photo ${i + 1} of ${photos.length}${p.caption ? `: ${p.caption}` : ""}`}
               onClick={() => setOpen(i)}
             >
-              <span
-                className="tp-polaroid"
-                style={
-                  {
-                    "--tilt": `${tilts[i % tilts.length]}deg`,
-                    "--tape": tapes[i % tapes.length],
-                    "--i": i,
-                  } as CSSProperties
-                }
-              >
-                <span aria-hidden="true" className="tp-tape tp-tape--center" />
-                <span className="tp-polaroid__photo">
-                  <Image
-                    src={p.src}
-                    alt={p.alt}
-                    width={p.width}
-                    height={p.height}
-                    sizes="(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 45vw"
-                    style={{ backgroundColor: p.color }}
-                  />
-                </span>
-                <span className="tp-polaroid__caption font-scrawl">
-                  {p.caption}
-                </span>
-              </span>
+              <Polaroid photo={p} order={i} sizes={SIZES} priority={i < 2} />
               <PawIcon className="tp-wall__paw" />
             </button>
           </li>
@@ -69,6 +43,7 @@ export function PhotoWall({ photos }: { photos: Media[] }) {
         index={open}
         onChange={setOpen}
         onClose={() => setOpen(null)}
+        pageSizes={SIZES}
       />
     </>
   );

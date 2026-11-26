@@ -181,7 +181,7 @@ export function NoticeBoard({
           </div>
         )}
       </div>
-      <ScrollReveal scope='[data-page="faq"]' threshold={0.1} />
+      <ScrollReveal scope='[data-page="faq"]' />
     </div>
   );
 }

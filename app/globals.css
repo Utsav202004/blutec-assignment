@@ -21,6 +21,7 @@
 @import "./styles/faq.css";
 @import "./styles/contact.css";
 @import "./styles/roaming.css";
+@import "./styles/lost.css";
 
 /*
  * Design tokens — copied from the reference site's compiled CSS so colours,
@@ -82,11 +83,6 @@ html {
   overflow-x: clip;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
 
 body {
   background: var(--color-milk);
@@ -96,7 +92,39 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   overflow-x: clip;
-  cursor: url(/assets/cursor/paw.svg) 9 6, auto;
+}
+
+/* ---------- Paw cursor (mouse users only, as on the reference) ---------- */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html,
+  body {
+    cursor: url(/assets/cursor/paw.svg) 9 6, auto;
+  }
+}
+/* Anything clickable gets the "pressing" paw, text fields the text cursor,
+   and text blocks inherit whatever their container shows */
+:is(a, button, summary, label[for], [role="button"], [role="tab"], select,
+  input[type="checkbox"], input[type="radio"], input[type="submit"]) {
+  cursor: url(/assets/cursor/paw-press.svg) 9 6, pointer;
+}
+:is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="range"]),
+  textarea, [contenteditable="true"]) {
+  cursor: text;
+}
+:is(p, h1, h2, h3, h4, li, blockquote, figcaption, dd, dt) {
+  cursor: inherit;
+}
+
+/* ---------- Lenis smooth scrolling (components/effects/SmoothScroll.tsx) ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
 }
 
 /* ---------- Typography helpers (same names as the reference) ---------- */

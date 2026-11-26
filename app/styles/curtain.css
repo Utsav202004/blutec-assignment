@@ -241,6 +241,10 @@
   html:has(> body > .tp-curtain[data-state="intro"]) {
     animation: 1.04s tp-hold-still;
   }
+  /* No scrolling while the curtain covers a page change */
+  html[data-curtain] {
+    animation: 7s tp-hold-still;
+  }
 }
 
 @keyframes tp-print-step {

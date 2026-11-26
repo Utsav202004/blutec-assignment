@@ -498,7 +498,7 @@ export function HowItWorksPage() {
           </section>
         </div>
       </section>
-      <ScrollReveal scope='[data-page="how"]' threshold={0.1} />
+      <ScrollReveal scope='[data-page="how"]' />
     </div>
   );
 }

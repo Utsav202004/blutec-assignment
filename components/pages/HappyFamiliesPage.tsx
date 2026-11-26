@@ -90,7 +90,7 @@ export function HappyFamiliesPage() {
           </div>
         </div>
       </section>
-      <ScrollReveal scope='[data-page="families"]' threshold={0.1} />
+      <ScrollReveal scope='[data-page="families"]' />
     </div>
   );
 }

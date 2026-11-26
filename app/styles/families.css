@@ -205,3 +205,16 @@
     transform: translateY(-1rem) rotate(6deg) scale(1.04);
   }
 }
+
+/* Photo viewer: the sharp full-size photo fades in over the page's copy */
+.tp-viewer__sharp {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+.tp-viewer__sharp[data-sharp] {
+  opacity: 1;
+}
+.tp-viewer__first--done {
+  visibility: hidden;
+  transition: visibility 0s 0.2s;
+}

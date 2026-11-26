@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { WhatsAppBar } from "@/components/layout/WhatsAppBar";
 import { PageCurtain } from "@/components/layout/PageCurtain";
 import { RoamingTeddy } from "@/components/teddy/RoamingTeddy";
+import { SmoothScroll } from "@/components/effects/SmoothScroll";
+import { PawTrail } from "@/components/effects/PawTrail";
 import "./globals.css";
 
 // next/font self-hosts these at build time (no requests to Google at runtime)
@@ -50,9 +52,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      // Next 16: reset our CSS smooth scrolling during route changes so a new
-      // page always opens instantly at the top
-      data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${figtree.variable} ${shantell.variable}`}
     >
       <body>
@@ -74,6 +73,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <RoamingTeddy />
         <WhatsAppBar />
+        <PawTrail />
+        <SmoothScroll />
       </body>
     </html>
   );

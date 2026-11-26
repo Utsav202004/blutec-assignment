@@ -1,10 +1,11 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo, type ReactNode } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useLayoutEffect, useMemo, useRef, type ReactNode } from "react";
 import { breedFilters, type Puppy } from "@/lib/puppies";
 import { whatsappLink } from "@/lib/site";
 import { Teddy } from "@/components/illustrations/Teddy";
+import { spring } from "@/lib/spring";
 
 type Filters = {
   origin?: string;
@@ -22,6 +23,11 @@ const KEYS = ["collection", "breed", "gender", "origin"] as const;
  *
  * Cards are rendered on the server and passed in as `cards` (keyed by slug), so
  * this component only decides which ones to show.
+ *
+ * Changing a filter animates the grid like the reference's Framer Motion
+ * "popLayout": cards that stay glide to their new places on a spring
+ * (stiffness 260, damping 26), new cards spring up from 86% scale, and cards
+ * that are filtered out shrink and fade where they stood (0.2s).
  */
 export function PuppyBrowser({
   puppies,
@@ -31,8 +37,9 @@ export function PuppyBrowser({
   cards: Record<string, ReactNode>;
 }) {
   const params = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
+  const listRef = useRef<HTMLUListElement>(null);
+  const before = useRef<Snapshot | null>(null);
 
   const f: Filters = Object.fromEntries(
     KEYS.map((k) => [k, params.get(k) ?? undefined]),
@@ -51,27 +58,49 @@ export function PuppyBrowser({
     [puppies, f.origin, f.collection, f.breed, f.gender],
   );
 
-  /** Toggle one filter value and write the new state to the URL */
+  /** Remember where every card is, just before the filters change */
+  const capture = () => {
+    const ul = listRef.current;
+    if (!ul || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rects = new Map<string, DOMRect>();
+    const nodes = new Map<string, HTMLElement>();
+    ul.querySelectorAll<HTMLElement>(":scope > li[data-slug]").forEach((li) => {
+      rects.set(li.dataset.slug!, li.getBoundingClientRect());
+      nodes.set(li.dataset.slug!, li);
+    });
+    before.current = { rects, nodes };
+  };
+
+  /**
+   * Write the filters to the URL. Like the reference this uses
+   * history.replaceState (Next keeps useSearchParams in sync), so filtering is
+   * instant: no server round trip, no new history entry.
+   */
+  const write = (next: URLSearchParams) => {
+    capture();
+    const qs = next.toString();
+    window.history.replaceState(null, "", qs ? `${pathname}?${qs}` : pathname);
+  };
+
+  /** Toggle one filter value */
   const set = (key: keyof Filters, value?: string) => {
     const next = new URLSearchParams(params.toString());
     if (!value || next.get(key) === value) next.delete(key);
     else next.set(key, value);
-    const qs = next.toString();
-    router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    write(next);
   };
-  const clear = () => router.replace(pathname, { scroll: false });
+  const clear = () => write(new URLSearchParams());
 
-  const chip = (label: string, pressed: boolean, onClick: () => void) => (
-    <button
-      key={label}
-      type="button"
-      aria-pressed={pressed}
-      className="tp-sticker-chip"
-      onClick={onClick}
-    >
-      {label}
-    </button>
-  );
+  const shownKey = shown.map((p) => p.slug).join(" ");
+  useLayoutEffect(() => {
+    const snap = before.current;
+    before.current = null;
+    const ul = listRef.current;
+    if (!snap || !ul) return;
+    animateGrid(ul, snap);
+  }, [shownKey]);
+
+  const hasLocal = puppies.some((p) => p.origin === "local");
   const rowLabel = "font-scrawl mr-1 w-full shrink-0 text-cocoa-soft sm:w-28";
 
   const count =
@@ -90,24 +119,65 @@ export function PuppyBrowser({
       >
         <div className="flex flex-wrap items-center gap-2">
           <span className={rowLabel}>where</span>
-          {chip("Everywhere", !f.origin && !f.collection, clear)}
-          {chip("Imported", f.origin === "imported", () =>
-            set("origin", "imported"),
+          <Chip
+            key="Everywhere"
+            pressed={!f.origin && !f.collection}
+            onClick={clear}
+          >
+            Everywhere
+          </Chip>
+          {hasLocal && (
+            <Chip
+              key="In Dubai"
+              pressed={f.origin === "local"}
+              onClick={() => set("origin", "local")}
+            >
+              In Dubai
+            </Chip>
           )}
-          {chip("Korean Teacup", f.collection === "korean-teacup", () =>
-            set("collection", "korean-teacup"),
-          )}
+          <Chip
+            key="Imported"
+            pressed={f.origin === "imported"}
+            onClick={() => set("origin", "imported")}
+          >
+            Imported
+          </Chip>
+          <Chip
+            key="Korean Teacup"
+            pressed={f.collection === "korean-teacup"}
+            onClick={() => set("collection", "korean-teacup")}
+          >
+            Korean Teacup
+          </Chip>
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <span className={rowLabel}>breed</span>
-          {breedFilters.map((b) =>
-            chip(b.label, f.breed === b.slug, () => set("breed", b.slug)),
-          )}
+          {breedFilters.map((b) => (
+            <Chip
+              key={b.label}
+              pressed={f.breed === b.slug}
+              onClick={() => set("breed", b.slug)}
+            >
+              {b.label}
+            </Chip>
+          ))}
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <span className={rowLabel}>boy or girl</span>
-          {chip("Boys", f.gender === "male", () => set("gender", "male"))}
-          {chip("Girls", f.gender === "female", () => set("gender", "female"))}
+          <Chip
+            key="Boys"
+            pressed={f.gender === "male"}
+            onClick={() => set("gender", "male")}
+          >
+            Boys
+          </Chip>
+          <Chip
+            key="Girls"
+            pressed={f.gender === "female"}
+            onClick={() => set("gender", "female")}
+          >
+            Girls
+          </Chip>
           {active && (
             <button
               type="button"
@@ -128,13 +198,11 @@ export function PuppyBrowser({
       </p>
 
       {shown.length ? (
-        // Re-keying the list on filter change replays the cards' pop-in animation
-        <ul
-          key={params.toString()}
-          className="tp-sketches tp-sketches--filtered mt-8"
-        >
+        <ul ref={listRef} className="tp-sketches relative mt-8">
           {shown.map((p) => (
-            <li key={p.slug}>{cards[p.slug]}</li>
+            <li key={p.slug} data-slug={p.slug}>
+              {cards[p.slug]}
+            </li>
           ))}
         </ul>
       ) : (
@@ -169,5 +237,95 @@ export function PuppyBrowser({
         </div>
       )}
     </div>
+  );
+}
+
+type Snapshot = {
+  rects: Map<string, DOMRect>;
+  nodes: Map<string, HTMLElement>;
+};
+
+/** Play the filter change: glide, pop in, and shrink away (see PuppyBrowser) */
+function animateGrid(ul: HTMLUListElement, snap: Snapshot) {
+  const { easing, duration } = spring(260, 26);
+  const box = ul.getBoundingClientRect();
+  const here = new Set<string>();
+
+  ul.querySelectorAll<HTMLElement>(":scope > li[data-slug]").forEach((li) => {
+    const slug = li.dataset.slug!;
+    here.add(slug);
+    const was = snap.rects.get(slug);
+    if (was) {
+      const now = li.getBoundingClientRect();
+      const dx = was.left - now.left;
+      const dy = was.top - now.top;
+      if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5)
+        li.animate(
+          [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "none" }],
+          { duration, easing },
+        );
+    } else {
+      li.animate(
+        [
+          { opacity: 0, transform: "scale(0.86)" },
+          { opacity: 1, transform: "none" },
+        ],
+        { duration, easing, fill: "backwards" },
+      );
+    }
+  });
+
+  // Filtered-out cards: a lookalike stays where the card was and shrinks away
+  // (React has already removed the real one)
+  snap.nodes.forEach((node, slug) => {
+    if (here.has(slug)) return;
+    const was = snap.rects.get(slug)!;
+    const ghost = node.cloneNode(true) as HTMLElement;
+    ghost.removeAttribute("data-slug");
+    ghost.inert = true;
+    ghost.setAttribute("aria-hidden", "true");
+    Object.assign(ghost.style, {
+      position: "absolute",
+      left: `${was.left - box.left - ul.clientLeft}px`,
+      top: `${was.top - box.top - ul.clientTop}px`,
+      width: `${was.width}px`,
+      height: `${was.height}px`,
+      margin: "0",
+      translate: "none",
+      pointerEvents: "none",
+    });
+    ul.appendChild(ghost);
+    // Remove it even if the animation never gets to run (e.g. background tab)
+    setTimeout(() => ghost.remove(), 400);
+    ghost
+      .animate(
+        [
+          { opacity: 1, transform: "none" },
+          { opacity: 0, transform: "scale(0.86)" },
+        ],
+        { duration: 200, easing: "ease-out", fill: "forwards" },
+      )
+      .finished.finally(() => ghost.remove());
+  });
+}
+
+function Chip({
+  pressed,
+  onClick,
+  children,
+}: {
+  pressed: boolean;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={pressed}
+      className="tp-sticker-chip"
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }

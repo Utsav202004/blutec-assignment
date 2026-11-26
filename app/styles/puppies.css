@@ -530,12 +530,3 @@
 
 /* Clone addition: cards pop back in after a filter change (the reference
    animates them with a JS spring; a CSS keyframe gives the same feel). */
-.tp-sketches--filtered > li {
-  animation: tp-card-pop 0.45s var(--ease-pounce) both;
-}
-@keyframes tp-card-pop {
-  from {
-    opacity: 0;
-    transform: scale(0.86);
-  }
-}

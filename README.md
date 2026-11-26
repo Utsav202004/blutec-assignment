@@ -22,28 +22,31 @@ The original is an illustrated, animation-heavy puppy shop: the home page tells 
 | Images | `next/image` (AVIF/WebP, responsive `srcset`, blur placeholders, focal points) |
 | Forms | Client-side validation + a Next.js Route Handler (`/api/enquiry`) that re-validates on the server |
 | Tooling | ESLint (`eslint-config-next`), Prettier, Lighthouse |
+| Smooth scrolling | [Lenis](https://lenis.darkroom.engineering) (as on the original; mouse/trackpad only) |
 | Hosting | Vercel |
 
-There are no UI or animation libraries. Interactions use native browser features (`<dialog>`, `IntersectionObserver`, CSS scroll-driven animations, `clip-path`) plus small React components.
+Apart from Lenis there are no UI or animation libraries. Interactions use native browser features (`<dialog>`, `IntersectionObserver`, the Web Animations API, CSS scroll-driven animations, `clip-path`) plus small React components. Where the original uses Framer Motion springs (puppy filters, photo viewer), `lib/spring.ts` turns the same spring settings into a CSS `linear()` easing.
 
 ## Pages
 
 | Route | What's on it |
 |---|---|
-| `/` | Hero with photo line-up, pinned door hallway, two ways to meet, scroll-driven WhatsApp journey, puppy passport, family photo wall, FAQ teaser, front-door CTA |
-| `/puppies` | Sketchbook listing with sticker-chip filters synced to the URL (`?breed=`, `?gender=`, `?origin=`, `?collection=`) |
+| `/` | Hero with photo line-up, pinned door hallway, two ways to meet with a scroll-linked flight, scroll-driven WhatsApp journey, puppy passport, family photo wall (opens a viewer on all 64 photos), FAQ teaser, front-door CTA |
+| `/puppies` | Sketchbook listing with sticker-chip filters synced to the URL (`?breed=`, `?gender=`, `?origin=`, `?collection=`); cards glide, pop in and shrink away on a spring as you filter |
 | `/puppies/[slug]` | 42 statically generated puppy pages: gallery and full-screen viewer, specs, steps, enquiry form, previous/next |
 | `/how-it-works` | Accessible "In Dubai / Imported" tabs, promise, delivery, why choose us |
 | `/happy-families` | 64 polaroids with a full-screen viewer |
 | `/gone-home` | "Tickets home" for puppies that have found families |
 | `/faq` | Cork-board FAQ with live search, highlighting and an accordion |
 | `/contact` | Letter-style form ("Dear TeddyPups, my name is ___") with a posting animation |
+| any other URL | 404 "LOST" poster with Teddy and tear-off tabs to the real pages |
 
 ## Features
 
 - **Responsive** at every breakpoint. Page heights match the original at 375 / 768 / 1024 / 1440px. Phones get a full-screen menu and a sticky WhatsApp/Call bar.
 - **Roaming Teddy:** on the home page one Teddy walks from section to section as you scroll. He takes each section's pose, hops out from behind the quilt, walks on the spot in the pinned hallway, leaves fading paw prints, asks "coming?" if you stop mid-way, opens the front door when he arrives, and responds to taps. On phones he peeks up from alternating screen edges. He also has gestures: blinking and tail wags, head tilts under the night sky, yawns in his basket, happy eyes when you hover, glancing (eyes only) towards your pointer or focused links, "ooh, photos!" as the WhatsApp chat fills in, and random tap tricks (jump, woof, hearts, sneeze). The static Teddys on the other pages do the same tap tricks.
-- **Animations:** a page-change "curtain", a pinned horizontal scroll section, a rotating hero photo line-up, scroll-in reveals, page-turn gallery transitions, idle mascot animations. All of them respect `prefers-reduced-motion`.
+- **Paw cursor and trail:** for mouse users the cursor is a paw (a "pressing" paw over anything clickable), and little paw prints follow it, alternating left and right feet, drawn on one canvas.
+- **Animations:** a page-change "curtain" (also on same-page links and back/forward), a pinned horizontal scroll section, a rotating hero photo line-up, scroll-in reveals that wait for the curtain to lift, page-turn gallery transitions, idle mascot animations. All of them respect `prefers-reduced-motion`.
 - **Accessibility:** a skip link, a native `<dialog>` for menus and viewers (focus trap, Esc), WAI-ARIA tabs, `aria-expanded` accordions with `inert` collapsed panels, labelled form fields with `aria-invalid` / `aria-describedby`, and focus moved to errors and confirmations.
 - **Performance:** every page is statically prerendered, images are optimised, the LCP image is prioritised, and non-critical fonts aren't preloaded.
 
@@ -74,6 +77,7 @@ components/
   how/ faq/ contact/ families/   Interactive pieces for those pages
   illustrations/        Teddy the mascot (4 poses + a walking rig), stars
   teddy/                RoamingTeddy: the scroll-driven Teddy that visits each section
+  effects/              SmoothScroll (Lenis), PawTrail (cursor paw prints)
   ui/                   PawIcon, ScrollReveal, PhotoViewer
 lib/
   site.ts               Brand name, contact details, WhatsApp link helper, navigation
@@ -81,6 +85,10 @@ lib/
   sketch.ts             Seeded generator for the hand-drawn card shapes
   teddy-journey.ts      Geometry for the roaming Teddy (stops, scroll holds, travel path)
   teddy-cue.ts          Lets page sections cue Teddy (e.g. the chat's "ooh, photos!")
+  teddy-tricks.ts       Teddy's tap tricks, shared by every Teddy
+  curtain.ts            Page-curtain state and events (tp:navigate, tp:arrived)
+  smooth-scroll.ts      Jump/glide helpers that work with or without Lenis
+  spring.ts             Spring physics → CSS linear() easing
   enquiry.ts            Shared form validation (browser + server)
   faqs.ts               FAQ content
   data/*.json           Puppy and family-photo data

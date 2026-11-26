@@ -151,6 +151,11 @@ export function RoamingTeddy() {
     // towards links/buttons that get keyboard focus or are cued by the page
     let pointer: { x: number; t: number } | null = null;
     let lookAt: { el: Element; until: number } | null = null;
+    // Things in the current section Teddy glances at in turn ([data-pup-look])
+    let looks: Element[] = [];
+    let lookIdx = -1;
+    let lastLookAt = 0;
+    let heldAt = 0;
     const onPointerMove = (e: PointerEvent) => {
       if (e.pointerType === "mouse")
         pointer = { x: e.clientX, t: performance.now() / 1000 };
@@ -254,6 +259,11 @@ export function RoamingTeddy() {
           treadLeft = null;
           askedComing = false;
           lookAt = null;
+          looks = stop.scene
+            ? [...stop.scene.querySelectorAll("[data-pup-look]")]
+            : [];
+          lookIdx = -1;
+          heldAt = now;
           nextHabitAt =
             now + (stop.act === "tilt" ? 1.2 : stop.act === "basket" ? 2.4 : 9);
           show({ mode: "pose", pose: stop.pose, facing: stop.facing }, true);
@@ -280,6 +290,21 @@ export function RoamingTeddy() {
           // Glance (eyes only, like the reference) towards the pointer or a
           // focused/cued element; he doesn't turn his body
           if (lookAt && lookAt.until < now) lookAt = null;
+          // Every 1.7s, glance at the next marked thing (or nothing, then repeat),
+          // unless he's busy looking at the pointer or something cued
+          const busy =
+            lookAt !== null || (pointer !== null && now - pointer.t < 2.5);
+          if (
+            looks.length &&
+            !busy &&
+            now - heldAt > 0.8 &&
+            now - lastLookAt > 1.7
+          ) {
+            lastLookAt = now;
+            lookIdx = (lookIdx + 1) % (looks.length + 1);
+            if (lookIdx < looks.length)
+              lookAt = { el: looks[lookIdx], until: now + 1.4 };
+          }
           let targetX: number | null = null;
           if (lookAt) {
             const r = lookAt.el.getBoundingClientRect();

@@ -118,7 +118,7 @@ export function GoneHomePage() {
           </ul>
         </div>
       </div>
-      <ScrollReveal scope='[data-page="gone"]' threshold={0.1} />
+      <ScrollReveal scope='[data-page="gone"]' />
     </div>
   );
 }

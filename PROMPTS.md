@@ -475,3 +475,84 @@ All tests ran against a **production build** (`next build && next start`), not t
 4. Plane positions while scrolling: (44,243) hidden → (205,107) → (414,75) → (608,157) → (620,168) in Dubai.
 5. The chat goes "typing…" → reply for each step (groups 000 → 100 → 110 → 111) and rewinds when scrolling up.
 6. Eight taps on the basket Teddy gave sneeze, hearts, woof, jump, …; no "night night".
+
+---
+
+## Prompt 19 — "dig deep and work on every nuance that is still missing" (2026-11-26)
+
+> there are still some isssue 1) the cursor moving effect is missing, the paws prints it leaves behind is missing 2) animations and effects are missing when using filter in the puppies section 3) In happy familes too there is a difference in animation, also when hovering photographs the cursor changes to the default system cursor and not the puppy one. dig deep and work on every nuance that is still missing
+
+### How I dug
+Instead of comparing by eye, I went back to the original's own code:
+- **Scripts:** I downloaded the original's JS for the home page, the puppy listing and the Happy families page. Then I listed every component it exports (`PawTrailCanvas`, `SmoothScroll`, `PuppyBrowser`, `RevealScope`, `MemoryWall`, `RouteCurtain`, …) and compared each one with the clone.
+- **Stylesheet:** I diffed every `tp-*`/`pup-*` class, keyframe and `data-*` attribute in the original's CSS against ours. That found the missing 404 poster, the photo viewer's sharp-image fade and the curtain's scroll lock.
+
+### What was missing, and what I built
+1. **Paw trail** (`components/effects/PawTrail.tsx`)
+   - The original draws paw prints on a full-screen canvas: one every 46px of mouse travel, alternating feet, pointing the way you move, fading after 1s.
+   - Ported with the same numbers (mouse only, off for reduced motion).
+2. **Cursor**
+   - The original has global rules: the "pressing" paw on every link, button, label, select and checkbox; a text cursor in fields; and text blocks that inherit their container's cursor.
+   - We only set the cursor on `body`. Tailwind v4 gives buttons `cursor: default`, so the polaroid buttons showed the system arrow. I added the original's rules.
+3. **Puppy filters** (`components/puppies/PuppyBrowser.tsx`, `lib/spring.ts`)
+   - **Original:** Framer Motion `layout` + `AnimatePresence mode="popLayout"`. Remaining cards glide to their new spots on a spring (stiffness 260, damping 26), new cards spring up from 86% scale, and removed cards shrink and fade in place over 0.2s.
+   - **Clone (FLIP + Web Animations API):** I measure every card just before the URL changes, then animate from old to new positions. Removed cards are replaced by a fading copy at their old position.
+   - **Spring easing:** `lib/spring.ts` samples the spring into a CSS `linear()` easing, so it moves like Framer's without adding the library.
+   - **Matching details:**
+     - filters now write the URL with `history.replaceState` (instant, no server round trip);
+     - a "boy & girl" litter matches both Boys and Girls;
+     - an "In Dubai" chip appears when local puppies exist.
+4. **Reveals** (`components/ui/ScrollReveal.tsx`, `lib/curtain.ts`)
+   - This was the main Happy families difference. Ours armed and revealed everything on load, so the cards on screen animated *behind* the page curtain and you never saw it. The original's `RevealScope` behaves differently:
+     - things already visible are just shown;
+     - things on screen while the curtain is down wait for the curtain's `tp:arrived` event, so they drop in as it lifts;
+     - everything else reveals as it scrolls in (8% visible, −6% bottom margin);
+     - cards added later (e.g. after a filter change) follow the same rules.
+5. **Home photo wall** (`components/home/DuskPhotoWall.tsx`, `components/families/Polaroid.tsx`)
+   - **Photos:** clicking a photo now opens the viewer on all 64 home photos. I extracted the full captioned list from the original's page data; all 64 were already stored locally.
+   - **Drop order:** the prints drop in the original's scattered order.
+   - **Teddy:** he glances at prints 2 and 5 in turn while sitting under the wall (`data-pup-look`).
+   - **Tape:** tape position now follows the original's 8-step cycle (centre, left, right, corners, …) on both walls; ours was always centred.
+6. **Photo viewer** (`components/ui/PhotoViewer.tsx`)
+   - The new photo springs in from the side you're heading to while the old one swings out.
+   - You can drag with the mouse or swipe; it gives way, and an 80px pull changes photo.
+   - The caption sits in the header ("3 / 64 — My new teddy puppy").
+   - Clicking the backdrop closes it.
+   - Neighbouring photos are preloaded, and the sharp full-size photo fades in over the copy already loaded on the page.
+7. **Page curtain** (`components/layout/PageCurtain.tsx`), rewritten to the original's `RouteCurtain` logic:
+   - links to the page you're on play the curtain and land at the top;
+   - back/forward "snaps" the curtain shut and lifts it once the page renders;
+   - the route is prefetched while the curtain drops;
+   - keyboard navigation moves focus to the new page;
+   - scrolling is locked while covered;
+   - it fires `tp:navigate` / `tp:arrived` events for the rest of the page.
+8. **Smooth scrolling** (`components/effects/SmoothScroll.tsx`)
+   - The original uses Lenis (lerp 0.1, wheel ×0.85) for its weighted scroll feel. Added with the same settings, for mouse/trackpad users only.
+   - Same-page `#links` now glide.
+   - I removed our CSS `scroll-behavior: smooth`, which the original doesn't have and which fought with Lenis.
+9. **404 page** (`app/not-found.tsx`): the original shows a "LOST" poster with Teddy and tear-off tabs. Ours fell back to Next's default; now it matches.
+
+### Testing (local production build)
+- **Filters:**
+  - "Boys": 10 copies of removed cards fade over 200ms, 5 cards glide (530ms spring), and the copies are cleaned up.
+  - "Everywhere": 10 cards spring in.
+  - Screenshots mid-animation show cards gliding and fading.
+- **Paw trail:** prints are drawn while the mouse moves and are gone after ~1s.
+- **Cursor:** buttons, links and photos all show `paw-press.svg`.
+- **Happy families after navigating:**
+  - The heading's reveal elements are armed and revealed as the curtain lifts (`tp:arrived` at ~1.2s).
+  - Polaroids reveal on scroll, with the correct tape cycle.
+  - Viewer: slide animations run (220ms out, spring in), the header reads "2 / 64", the sharp image loads, and a backdrop click closes it.
+- **Home wall:**
+  - correct drop delays, `data-pup-look` on prints 2 and 5;
+  - clicking print 3 opens "3 / 64 — My new teddy puppy 🥰🧸";
+  - at the dusk stop Teddy's `--look-x` alternates between a print and centre.
+- **Curtain:**
+  - same-page footer link: covering → covered (scroll 2500 → 0) → lifting → idle;
+  - back button: snap → lift once rendered.
+- **404:** the poster renders, with a 404 status.
+- **Checks:** types and lint are clean. Console errors appear only for the intentional 404 test page.
+
+### Challenges
+- **The test browser pane:** when it's hidden, the browser freezes animation timelines, so removed-card copies and outgoing viewer slides never "finished". I added timer fallbacks that remove them, which also protects real users in background tabs.
+- **Lighthouse on localhost:** it simulates a slow phone from a very fast local trace, so its mobile LCP estimate swings (4–6s) even though the measured LCP is 0.1s. I also stopped sending blur placeholders for the 56 viewer-only photos (−15KB HTML). Final scores are measured on the live site.
