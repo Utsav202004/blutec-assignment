@@ -50,6 +50,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      // Next 16: reset our CSS smooth scrolling during route changes so a new
+      // page always opens instantly at the top
+      data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${figtree.variable} ${shantell.variable}`}
     >
       <body>

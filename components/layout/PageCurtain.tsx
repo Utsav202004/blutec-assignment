@@ -47,9 +47,17 @@ export function PageCurtain() {
       if (!a || a.target === "_blank" || a.hasAttribute("download")) return;
       const url = new URL(a.href, location.href);
       if (url.origin !== location.origin) return;
-      // Same page (#hash links, or query-only changes like puppy filters):
-      // no curtain, let Next/the browser handle it normally
-      if (url.pathname === location.pathname) return;
+      if (url.pathname === location.pathname) {
+        // A link to the page you're already on (e.g. "Available puppies"
+        // in the footer while on /puppies): glide back to the top.
+        if (url.search === location.search && !url.hash) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        // #hash links and query-only changes (puppy filters) are left to
+        // Next/the browser, without the curtain
+        return;
+      }
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
       e.preventDefault();
@@ -69,7 +77,12 @@ export function PageCurtain() {
   // New route rendered: lift the curtain
   useEffect(() => {
     if (!pending.current) return;
+    const target = pending.current;
     pending.current = null;
+    // Start the new page at the top while the curtain still covers it, so it
+    // never lifts mid-page (unless the link points at a #section)
+    if (!target.includes("#"))
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     const lift = setTimeout(() => setState("lifting"), 60);
     const done = setTimeout(() => setState("idle"), 60 + LIFT_MS);
     return () => {

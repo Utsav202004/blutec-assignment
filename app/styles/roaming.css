@@ -156,16 +156,16 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
  * Individual `rotate`/`translate` properties compose with the parts'
  * existing SVG transforms instead of replacing them.
  */
-.pup-actor [data-p] {
+:is(.pup-actor, .pup-buddy) [data-p] {
   transform-box: view-box;
 }
-.pup-actor [data-p="head"] {
+:is(.pup-actor, .pup-buddy) [data-p="head"] {
   transform-origin: 212px 104px;
 }
-.pup-actor [data-p="tail"] {
+:is(.pup-actor, .pup-buddy) [data-p="tail"] {
   transform-origin: 84px 150px;
 }
-.pup-actor [data-p="earR"] {
+:is(.pup-actor, .pup-buddy) [data-p="earR"] {
   transform-origin: 250px 82px;
 }
 
@@ -181,8 +181,16 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 .pup-actor[data-gait="pose"] [data-p="tail"] {
   animation: 1.6s ease-in-out infinite alternate pup-wag;
 }
-.pup-actor[data-gait="pose"] [data-p="earR"] {
+/* Ear twitch only while dozing in the basket (as on the reference) */
+.pup-actor[data-gait="pose"][data-pose="snug"] [data-p="earR"] {
   animation: 7.4s ease-in-out 2.2s infinite tp-ear-twitch;
+}
+
+/* Glancing: the eyes slide towards what Teddy is looking at (--look-x is
+   -1..1, set by RoamingTeddy) */
+.pup-actor[data-gait="pose"] [data-p="eyes"] {
+  translate: calc(var(--look-x, 0) * 5px) 0;
+  transition: translate 0.35s var(--ease-silk);
 }
 
 @keyframes pup-wag {
@@ -207,7 +215,7 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 }
 
 /* Head tilt: "hmm?" (night sky stop, and now and then when idle) */
-.pup-actor[data-gait][data-gesture="tilt"] [data-p="head"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="tilt"] [data-p="head"] {
   animation: pup-tilt 2.4s var(--ease-pounce);
 }
 @keyframes pup-tilt {
@@ -222,15 +230,15 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 }
 
 /* Yawn (in the basket): head back, eyes shut, mouth open */
-.pup-actor[data-gait][data-gesture="yawn"] [data-p="head"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="yawn"] [data-p="head"] {
   animation: pup-yawn-head 1.8s ease-in-out;
 }
-.pup-actor[data-gait][data-gesture="yawn"] [data-p="open"],
-.pup-actor[data-gait][data-gesture="yawn"] [data-p="happy"],
-.pup-actor[data-gait][data-gesture="yawn"] [data-p="tongue"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="yawn"] [data-p="open"],
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="yawn"] [data-p="happy"],
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="yawn"] [data-p="tongue"] {
   animation: pup-hide-mid 1.8s ease-in-out;
 }
-.pup-actor[data-gait][data-gesture="yawn"] :is([data-p="shut"], [data-p="mouth"]) {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="yawn"] :is([data-p="shut"], [data-p="mouth"]) {
   animation: pup-show-mid 1.8s ease-in-out;
 }
 @keyframes pup-yawn-head {
@@ -254,7 +262,7 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 }
 
 /* Jolt: a little squash-and-stretch wiggle */
-.pup-actor[data-gait][data-gesture="jolt"] .pup-actor__pose {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="jolt"] .pup-actor__pose {
   animation: pup-jolt 0.55s var(--ease-pounce);
 }
 @keyframes pup-jolt {
@@ -267,7 +275,7 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 }
 
 /* Jump (tap trick) */
-.pup-actor[data-gait][data-gesture="jump"] .pup-actor__pose {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="jump"] .pup-actor__pose {
   animation: pup-jump 0.7s cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 @keyframes pup-jump {
@@ -283,13 +291,13 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
 }
 
 /* Sneeze (tap trick): wind up, then "achoo!" */
-.pup-actor[data-gait][data-gesture="sneeze"] [data-p="head"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="sneeze"] [data-p="head"] {
   animation: pup-sneeze 0.9s ease-in;
 }
-.pup-actor[data-gait][data-gesture="sneeze"] [data-p="open"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="sneeze"] [data-p="open"] {
   animation: pup-hide-mid 0.9s;
 }
-.pup-actor[data-gait][data-gesture="sneeze"] [data-p="shut"] {
+:is(.pup-actor, .pup-buddy)[data-gait][data-gesture="sneeze"] [data-p="shut"] {
   animation: pup-show-mid 0.9s;
 }
 @keyframes pup-sneeze {
@@ -313,4 +321,14 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* Static Teddys (other pages): jump and jolt move the whole drawing */
+.pup-buddy[data-gait][data-gesture="jump"] > svg {
+  animation: pup-jump 0.7s cubic-bezier(0.3, 0.7, 0.4, 1);
+  transform-origin: 50% 95%;
+}
+.pup-buddy[data-gait][data-gesture="jolt"] > svg {
+  animation: pup-jolt 0.55s var(--ease-pounce);
+  transform-origin: 50% 95%;
 }

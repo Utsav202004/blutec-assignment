@@ -8,21 +8,43 @@ import { whatsappLink } from "@/lib/site";
 import { cueTeddy } from "@/lib/teddy-cue";
 import { Teddy } from "@/components/illustrations/Teddy";
 
+const STEP_COUNT = 3;
+
 /**
- * "Your puppy journey". As each step scrolls past the middle of the screen it
- * becomes active, the phone shows a typing indicator, then that step's
- * WhatsApp messages pop in. On desktop the phone is sticky beside the steps.
+ * "Your puppy journey": a WhatsApp conversation that plays as you scroll,
+ * like the reference.
+ *
+ * - The phone starts with only your opening message, and no step is active.
+ * - As a step crosses a band 28–38% down the screen it becomes active; if you
+ *   scrolled forward, TeddyPups is "typing…" (header + dots) for 750ms, then
+ *   that step's reply appears and Teddy reacts.
+ * - Scrolling back up rewinds the conversation (later replies hide again).
+ * - On phones/tablets (< 1024px) and with reduced motion the whole
+ *   conversation is simply shown.
  */
 export function Journey() {
-  const [active, setActive] = useState(0); // step the reader is on
-  const [shown, setShown] = useState(0); // last message group visible in the phone
+  const [step, setStep] = useState(-1); // the step the reader is on (-1 = none yet)
   const [typing, setTyping] = useState(false);
+  const [live, setLive] = useState(false); // false = show everything
   const [playing, setPlaying] = useState(false);
   const stepsRef = useRef<HTMLOListElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastStep = useRef(-1);
 
-  // Track which step crosses the vertical middle of the viewport
+  // Only animate on desktop without reduced motion
   useEffect(() => {
+    const mq = window.matchMedia(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+    );
+    const update = () => setLive(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Which step is in the activation band
+  useEffect(() => {
+    if (!live) return;
     const steps =
       stepsRef.current?.querySelectorAll<HTMLElement>(".tp-chat__step");
     if (!steps) return;
@@ -30,48 +52,49 @@ export function Journey() {
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting)
-            setActive(Number((e.target as HTMLElement).dataset.index));
+            setStep(Number((e.target as HTMLElement).dataset.index));
         }
       },
-      { rootMargin: "-45% 0px -45% 0px" },
+      { rootMargin: "-28% 0px -62% 0px" },
     );
     steps.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [live]);
 
-  // New step reached: "typing…" for a moment, then reveal the messages.
-  // (State is only set inside the timers, never synchronously in the effect.)
+  // Moving forward to a new step: "typing…", then the reply (and Teddy reacts)
   useEffect(() => {
-    if (active <= shown) return;
+    if (!live) return;
+    const forward = step > lastStep.current;
+    lastStep.current = step;
+    if (!forward || step < 0) return;
     const start = setTimeout(() => setTyping(true), 0);
     const done = setTimeout(() => {
       setTyping(false);
-      setShown(active);
-      // Teddy reacts to the new messages (if he's sitting by the phone)
       const group = stepsRef.current
         ?.closest("section")
-        ?.querySelector(`[data-step="${active}"]`);
+        ?.querySelector(`[data-step="${step}"]`);
       cueTeddy({
         near: group,
         secs: 1.4,
         say:
-          active === 1
-            ? "ooh, photos!"
-            : active === 2
-              ? "home soon!"
-              : undefined,
+          step === 1 ? "ooh, photos!" : step === 2 ? "home soon!" : undefined,
       });
-    }, 650);
+    }, 750);
     return () => {
       clearTimeout(start);
       clearTimeout(done);
     };
-  }, [active, shown]);
+  }, [step, live]);
+
+  // The step that drives the phone: the reader's step, or the last one when static
+  const current = live ? step : STEP_COUNT - 1;
+  const replyShown = (i: number) =>
+    i < current || (i === current && !(live && typing));
 
   const stepState = (i: number) => ({
     "data-index": i,
-    "data-active": i === active ? "" : undefined,
-    "data-done": i < active ? "" : undefined,
+    "data-active": i === current ? "" : undefined,
+    "data-done": i < current ? "" : undefined,
   });
 
   const toggleVideo = () => {
@@ -165,7 +188,9 @@ export function Journey() {
               />
               <span>
                 <span className="tp-phone__name">TeddyPups U.A.E.</span>
-                <span className="tp-phone__status">online</span>
+                <span className="tp-phone__status">
+                  {live && typing ? "typing…" : "online"}
+                </span>
               </span>
             </div>
             <div className="tp-phone__screen">
@@ -175,7 +200,7 @@ export function Journey() {
               <div
                 className="tp-msg-group"
                 data-step="0"
-                data-show={shown >= 0}
+                data-show={replyShown(0)}
               >
                 <div className="tp-msg tp-msg--them">
                   <p>
@@ -205,7 +230,7 @@ export function Journey() {
               <div
                 className="tp-msg-group"
                 data-step="1"
-                data-show={shown >= 1}
+                data-show={replyShown(1)}
               >
                 <div className="tp-msg tp-msg--them tp-msg--media">
                   <div className="tp-snaps">
@@ -296,7 +321,7 @@ export function Journey() {
               <div
                 className="tp-msg-group"
                 data-step="2"
-                data-show={shown >= 2}
+                data-show={replyShown(2)}
               >
                 <div className="tp-msg tp-msg--them">
                   <p>
@@ -334,7 +359,11 @@ export function Journey() {
                   </svg>
                 </div>
               </div>
-              <p className="tp-typing" data-show={typing} aria-hidden="true">
+              <p
+                className="tp-typing"
+                data-show={live && typing}
+                aria-hidden="true"
+              >
                 <span />
                 <span />
                 <span />

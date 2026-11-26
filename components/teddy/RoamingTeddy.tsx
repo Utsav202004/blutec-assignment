@@ -9,6 +9,7 @@ import {
 import { TeddyRunnerParts } from "@/components/illustrations/TeddyRunner";
 import { measureJourney, placeAt, type Journey } from "@/lib/teddy-journey";
 import { TEDDY_CUE, type TeddyCue } from "@/lib/teddy-cue";
+import { GESTURE_MS, floatHearts, pickTrick } from "@/lib/teddy-tricks";
 
 type Mode = "pose" | "walk" | "stand" | "hop";
 type Look = { mode: Mode; pose: TeddyPose; facing: 1 | -1; beat: number };
@@ -76,7 +77,6 @@ export function RoamingTeddy() {
     let treadIdle = 0;
     let current: Look = { mode: "pose", pose: "peek", facing: 1, beat: 0 };
     let lastPlace: { x: number; y: number; s: number } | null = null;
-    let arrivedAt = 0; // when Teddy sat down at the current stop
     let lastScrollAt = 0;
     let lastScrollY = scrollY;
     let nextHabitAt = 0; // next idle gesture at the current stop
@@ -114,13 +114,6 @@ export function RoamingTeddy() {
     // animates the named parts of the drawing (head, eyes, mouth, tail…).
     let gestureTimer: ReturnType<typeof setTimeout> | undefined;
     let gestureUntil = 0;
-    const GESTURE_MS: Record<string, number> = {
-      tilt: 2400,
-      yawn: 1800,
-      jolt: 550,
-      jump: 700,
-      sneeze: 900,
-    };
     const gesture = (name: string) => {
       clearTimeout(gestureTimer);
       delete actor.dataset.gesture;
@@ -135,60 +128,22 @@ export function RoamingTeddy() {
     const hearts = () => {
       if (!lastPlace) return;
       const p = lastPlace;
-      const hx = p.x + (current.facing > 0 ? 212 : 88) * p.s;
-      const hy = p.y + 50 * p.s;
-      [0, 1, 2].forEach((i) => {
-        const h = document.createElement("span");
-        h.className = "pup-heart";
-        h.textContent = "♥";
-        layer.appendChild(h);
-        const dx = (i - 1) * 22 + (Math.random() - 0.5) * 10;
-        h.animate(
-          [
-            { transform: `translate(${hx}px, ${hy}px) scale(0.4)`, opacity: 0 },
-            {
-              transform: `translate(${hx + dx * 0.4}px, ${hy - 24}px) scale(1)`,
-              opacity: 1,
-              offset: 0.25,
-            },
-            {
-              transform: `translate(${hx + dx}px, ${hy - 80}px) scale(0.9)`,
-              opacity: 0,
-            },
-          ],
-          {
-            duration: 1300,
-            delay: i * 140,
-            easing: "ease-out",
-            fill: "backwards",
-          },
-        ).finished.then(
-          () => h.remove(),
-          () => h.remove(),
-        );
-      });
+      floatHearts(
+        layer,
+        p.x + (current.facing > 0 ? 212 : 88) * p.s,
+        p.y + 50 * p.s,
+      );
     };
 
-    /** Tap tricks, picked at random (the reference has jump, woof, love, sneeze) */
+    /** Tap: a random trick (shared with the static Teddys) */
     const trick = () => {
-      const pick = ["jump", "woof", "love", "sneeze"][
-        Math.floor(Math.random() * 4)
-      ];
+      const t = pickTrick();
       // Give the trick room: no habit (yawn, tilt…) for a moment afterwards
       nextHabitAt = Math.max(nextHabitAt, performance.now() / 1000 + 3);
-      if (pick === "jump") {
-        gesture("jump");
-        say("wheee!", 1.2);
-      } else if (pick === "woof") {
-        gesture("jolt");
-        say("woof!", 1.2);
-      } else if (pick === "love") {
-        hearts();
-        say("love you!", 1.4);
-      } else {
-        gesture("sneeze");
-        setTimeout(() => say("achoo!", 1.1), 520);
-      }
+      if (t.gesture) gesture(t.gesture);
+      if (t.hearts) hearts();
+      if (t.sayDelay) setTimeout(() => say(t.say, 1.1), t.sayDelay);
+      else say(t.say, 1.3);
     };
     trickRef.current = trick;
 
@@ -196,7 +151,6 @@ export function RoamingTeddy() {
     // towards links/buttons that get keyboard focus or are cued by the page
     let pointer: { x: number; t: number } | null = null;
     let lookAt: { el: Element; until: number } | null = null;
-    let lastFlip = 0;
     const onPointerMove = (e: PointerEvent) => {
       if (e.pointerType === "mouse")
         pointer = { x: e.clientX, t: performance.now() / 1000 };
@@ -299,7 +253,6 @@ export function RoamingTeddy() {
           heldK = p.k;
           treadLeft = null;
           askedComing = false;
-          arrivedAt = now;
           lookAt = null;
           nextHabitAt =
             now + (stop.act === "tilt" ? 1.2 : stop.act === "basket" ? 2.4 : 9);
@@ -324,30 +277,23 @@ export function RoamingTeddy() {
             }
           }
 
-          // Look towards the pointer / a focused or cued element, then back
+          // Glance (eyes only, like the reference) towards the pointer or a
+          // focused/cued element; he doesn't turn his body
           if (lookAt && lookAt.until < now) lookAt = null;
           let targetX: number | null = null;
           if (lookAt) {
             const r = lookAt.el.getBoundingClientRect();
             targetX = r.left + r.width / 2;
           } else if (pointer && now - pointer.t < 2.5) targetX = pointer.x;
-          const centre = p.x + 168 * p.s;
-          const want: 1 | -1 =
+          const centre = p.x + 212 * p.s;
+          const glance =
             targetX === null
-              ? stop.facing
-              : targetX < centre - 40
-                ? -1
-                : targetX > centre + 40
-                  ? 1
-                  : current.facing;
-          if (
-            want !== current.facing &&
-            now - lastFlip > 0.5 &&
-            now - arrivedAt > 0.4
-          ) {
-            lastFlip = now;
-            show({ facing: want });
-          }
+              ? 0
+              : Math.max(-1, Math.min(1, (targetX - centre) / 400));
+          // Drawn coordinates are mirrored when he faces left
+          const lookX = (glance * current.facing).toFixed(2);
+          if (actor.style.getPropertyValue("--look-x") !== lookX)
+            actor.style.setProperty("--look-x", lookX);
         }
         // Door hallway: walk on the spot while the doors slide past
         if (stop.treadmill) {

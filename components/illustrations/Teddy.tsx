@@ -2,13 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { teddyPoses, type TeddyPose } from "./teddy-poses";
+import { GESTURE_MS, floatHearts, pickTrick } from "@/lib/teddy-tricks";
 
 type TeddyProps = {
   pose: TeddyPose;
   /** Positioning class from the section, e.g. "tp-hero__teddy" */
   className?: string;
   label: string;
-  /** Speech bubble text shown when Teddy is tapped (and optionally on load) */
+  /** Greeting shown in a speech bubble when `greet` is set */
   bubble?: string;
   /** Show the bubble once shortly after mount */
   greet?: boolean;
@@ -26,7 +27,7 @@ type TeddyProps = {
 
 /**
  * Teddy, the TeddyPups mascot, drawn in one of four poses. Each instance
- * is visible on its own (with idle animations and a speech bubble on tap).
+ * is visible on its own; tapping him does a random trick with a line.
  * Instances marked `stop` are also waypoints for the roaming Teddy: while
  * he's active they hide (html[data-pup]) and he walks between them.
  */
@@ -42,25 +43,63 @@ export function Teddy({
   act,
   behind,
 }: TeddyProps) {
+  const [text, setText] = useState(bubble ?? "");
   const [show, setShow] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const buddyRef = useRef<HTMLDivElement>(null);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const later = (fn: () => void, ms: number) =>
+    timers.current.push(setTimeout(fn, ms));
 
-  const say = (ms = 1800) => {
-    if (!bubble) return;
+  const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+  /** Show a line for `ms` milliseconds (a newer line replaces an older one) */
+  const say = (line: string, ms = 1400) => {
+    setText(line);
     setShow(true);
-    clearTimeout(timer.current);
-    timer.current = setTimeout(() => setShow(false), ms);
+    clearTimeout(hideTimer.current);
+    hideTimer.current = setTimeout(() => setShow(false), ms);
   };
 
+  /** Tap: a random trick with its line (jump, woof, hearts, sneeze), like the reference */
+  const tap = () => {
+    const buddy = buddyRef.current;
+    if (!buddy) return;
+    const t = pickTrick();
+    if (t.gesture) {
+      delete buddy.dataset.gesture;
+      void buddy.offsetWidth; // restart the animation
+      buddy.dataset.gesture = t.gesture;
+      later(() => delete buddy.dataset.gesture, GESTURE_MS[t.gesture]);
+    }
+    if (t.hearts) {
+      const w = buddy.offsetWidth;
+      const h = buddy.offsetHeight;
+      floatHearts(
+        buddy,
+        (facing === "left" ? 88 : 212) * (w / 300),
+        50 * (h / 240),
+      );
+    }
+    if (t.sayDelay) later(() => say(t.say, 1100), t.sayDelay);
+    else say(t.say);
+  };
+
+  // Optional greeting shortly after load (e.g. the hero's "peekaboo!")
   useEffect(() => {
     if (!greet || !bubble) return;
-    const t = setTimeout(() => {
+    const t1 = setTimeout(() => {
+      setText(bubble);
       setShow(true);
-      timer.current = setTimeout(() => setShow(false), 2600);
     }, 1400);
+    const t2 = setTimeout(() => setShow(false), 4000);
+    const pending = timers.current;
+    const hide = hideTimer;
     return () => {
-      clearTimeout(t);
-      clearTimeout(timer.current);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(hide.current);
+      pending.forEach(clearTimeout);
     };
   }, [greet, bubble]);
 
@@ -75,10 +114,12 @@ export function Teddy({
       className={`pup-stop ${className}`}
     >
       <div
+        ref={buddyRef}
         className="pup-buddy"
         data-facing={facing}
-        data-live={bubble ? "" : undefined}
-        onClick={() => say()}
+        data-gait="pose"
+        data-live=""
+        onClick={tap}
       >
         <svg
           viewBox="0 0 300 240"
@@ -93,11 +134,9 @@ export function Teddy({
             teddyPoses[pose]
           )}
         </svg>
-        {bubble && (
-          <span aria-hidden="true" className="pup-bubble" data-show={show}>
-            {bubble}
-          </span>
-        )}
+        <span aria-hidden="true" className="pup-bubble" data-show={show}>
+          {text}
+        </span>
       </div>
     </div>
   );

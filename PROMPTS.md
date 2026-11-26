@@ -435,3 +435,43 @@ All tests ran against a **production build** (`next build && next start`), not t
 - **The original blink keyframes force the open eyes fully visible** at every point except the blink. That would have covered the bow pose's happy (closed) eyes, so the bow pose doesn't blink.
 - **CSS specificity:** the blink selector was more specific than the gesture selectors, so the eyes couldn't change during yawns and petting. I raised the gesture selectors to equal specificity; they come later in the file, so they win.
 
+
+---
+
+## Prompt 18 — six problems found while browsing (2026-11-26)
+
+> Here are some problems i found out while going through the site: 1) if i click on the logo to go to the home page, it redirects, but leaves at the same height … 2) clicking on "Available puppies" link at the bottom … takes me … to the same bottom section … 3) … the centre puppy is lifting his ears and moving sides which is even not on the original site … 4) the flight simulation is still not working 5) … the phone and the chat is interactive in the original … 6) when in the basket at the end, clicking on our puppy exclaims "night night" …
+
+### Causes and fixes
+1. **and 2. New pages kept the old scroll position.**
+   - **Cause:** Next 16 no longer turns off CSS `scroll-behavior: smooth` during navigation. While the page curtain covered the change, the scroll to the top was a slow smooth scroll, and it could be cancelled.
+   - **Fix:**
+     - added `data-scroll-behavior="smooth"` on `<html>` (Next 16's opt-in);
+     - `PageCurtain` jumps instantly to the top before lifting;
+     - a link to the page you're already on (e.g. "Available puppies" while on /puppies) now glides back to the top.
+3. **Hero Teddy turning and ear twitch.**
+   - **Cause:** these were my own additions from the gestures round. "Look at the pointer" flipped his whole body, and the ear twitch ran at every stop.
+   - **Fix:** he now only glances with his eyes (a CSS variable `--look-x` moves the pupils up to 5px), as on the original, and the ear twitch only happens in the basket.
+4. **Flight.**
+   - **Cause:** the converted markup was a static picture.
+   - **Fix:** a new `components/home/Flight.tsx` links it to scrolling, using the original's numbers:
+     - progress runs from the panel's top at 95% of the screen to its bottom at 25%;
+     - the plane follows the dotted route with `getPointAtLength`, banks along the curve and fades in at take-off;
+     - with reduced motion it parks part-way along the route.
+5. **WhatsApp chat.**
+   - **Cause:** my version showed the first message in advance, used a different trigger band, had no "typing…" state and couldn't rewind.
+   - **Fix:** rewrote it to the original's logic:
+     - nothing is shown at first;
+     - each step reached shows "typing…" in the header plus typing dots for 750ms before the reply appears;
+     - scrolling back up hides replies again;
+     - below 1024px or with reduced motion, the whole chat is shown at once.
+6. **Static Teddys only repeated their bubble.**
+   - **Fix:** the tap tricks now live in `lib/teddy-tricks.ts`, shared by the roaming Teddy and every static Teddy (basket, FAQ, etc.): jump/"wheee!", woof, hearts/"love you!" and sneeze/"achoo!", never the same one twice in a row.
+
+### Testing (local production build, 1440×900)
+1. Logo from deep in /puppies opens Home at scrollY 0.
+2. The footer link to another page also opens it at 0; the same-page link glides from 2772 to 0.
+3. Pointer at five positions: no flip, pupils move −1…1, and no ear animation outside the basket.
+4. Plane positions while scrolling: (44,243) hidden → (205,107) → (414,75) → (608,157) → (620,168) in Dubai.
+5. The chat goes "typing…" → reply for each step (groups 000 → 100 → 110 → 111) and rewinds when scrolling up.
+6. Eight taps on the basket Teddy gave sneeze, hearts, woof, jump, …; no "night night".
