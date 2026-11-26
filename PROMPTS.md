@@ -396,3 +396,42 @@ All tests ran against a **production build** (`next build && next start`), not t
 
 **Lesson.** When a component writes inline styles onto shared DOM (sizes, `data-*` on `<html>`), its cleanup must undo every one of them. Client-side navigation keeps the DOM alive, so leftovers persist across pages.
 
+---
+
+## Prompts 16–17 — "is the clone complete now" / "Add the gestures" (2026-11-26)
+
+> is the clone complete now
+>
+> Add the gestures
+
+**Before answering,** I re-tested the roaming Teddy at the two widths I hadn't covered (768px and 1024px) on the live site. He visits every section and ends in the basket, with no overflow and no console errors. Answer: complete for the assignment. The only visible gap left was Teddy's small gestures; the other differences (procedural card outlines, my own form messages, forms that don't send, placeholder contacts) are documented and intentional. You chose to add the gestures.
+
+### What was added
+- **Always:** blinking, a gentle tail wag and the odd ear twitch while he sits at a stop.
+- **Habits:**
+  - head tilts every ~3.4s at the night-sky stop;
+  - wiggles and yawns every 4.5–7.5s in the footer basket;
+  - elsewhere, a tilt or wiggle after ~9s without scrolling.
+- **Petting:** hovering over Teddy switches to happy eyes and a fast wag.
+- **Looking:** he turns towards the mouse while it moves, and towards links or buttons that get keyboard focus. After 2.5s he turns back to his usual direction.
+- **Page cues:** `lib/teddy-cue.ts` dispatches a `pup:cue` event. The WhatsApp journey uses it to make Teddy say "ooh, photos!" and "home soon!" (and look at the phone) as messages arrive, but only if he's sitting in that section.
+- **Tap tricks** (as on the original): a jump ("wheee!"), "woof!" with a wiggle, floating hearts ("love you!"), or a sneeze ("achoo!"). Habits pause for 3s after a trick so they don't interrupt it.
+
+### How
+- **CSS, not a new rig.** The pose drawings already name their parts (`data-p="head" | "tail" | "earR" | "open" | "happy" | "shut" | "mouth" | "tongue"`). `RoamingTeddy` sets `data-gesture` / `data-pet` on the actor and `roaming.css` animates those parts.
+- **Composing with the drawing's own transforms.** I used the individual `rotate`/`translate` CSS properties (with `transform-box: view-box` and origins at the neck, tail base and ear) so they add to each part's existing SVG transform instead of replacing it.
+- **No React re-renders per gesture:** each gesture is one attribute change on the DOM. Hearts are short-lived `<span>`s animated with the Web Animations API and removed when done.
+
+### Testing
+- **Habits:** at the night stop he tilts; in the basket he wiggles and yawns.
+- **Tap tricks:** 8 taps produced all four tricks (3 hearts each time for "love").
+- **Petting:** shows happy eyes (opacity 1).
+- **Looking:** moving the pointer to his left flips him to face left.
+- **Chat cue:** sitting by the phone, he said "ooh, photos!" at step 2 and "home soon!" at step 3.
+- **Rendering**, with gestures frozen mid-way: the head tilt pivots at the neck, and the yawn shows shut eyes, an open mouth and the head tipped back.
+- **Lighthouse on home:** still 100 on mobile and desktop, with 0 console errors.
+
+### Challenges
+- **The original blink keyframes force the open eyes fully visible** at every point except the blink. That would have covered the bow pose's happy (closed) eyes, so the bow pose doesn't blink.
+- **CSS specificity:** the blink selector was more specific than the gesture selectors, so the eyes couldn't change during yawns and petting. I raised the gesture selectors to equal specificity; they come later in the file, so they win.
+

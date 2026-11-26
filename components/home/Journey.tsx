@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { whatsappLink } from "@/lib/site";
+import { cueTeddy } from "@/lib/teddy-cue";
 import { Teddy } from "@/components/illustrations/Teddy";
 
 /**
@@ -46,6 +47,20 @@ export function Journey() {
     const done = setTimeout(() => {
       setTyping(false);
       setShown(active);
+      // Teddy reacts to the new messages (if he's sitting by the phone)
+      const group = stepsRef.current
+        ?.closest("section")
+        ?.querySelector(`[data-step="${active}"]`);
+      cueTeddy({
+        near: group,
+        secs: 1.4,
+        say:
+          active === 1
+            ? "ooh, photos!"
+            : active === 2
+              ? "home soon!"
+              : undefined,
+      });
     }, 650);
     return () => {
       clearTimeout(start);

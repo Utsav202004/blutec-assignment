@@ -148,3 +148,169 @@ html[data-pup] .tp-home[data-visited="true"] .tp-house__door {
     animation: none !important;
   }
 }
+
+/* ---- Teddy's gestures (clone additions) --------------------------------
+ * The pose drawings expose named parts (data-p="head" | "tail" | "earR" |
+ * "open" | "happy" | "shut" | "mouth" | "tongue"). RoamingTeddy sets
+ * data-gesture / data-pet on .pup-actor and these rules animate the parts.
+ * Individual `rotate`/`translate` properties compose with the parts'
+ * existing SVG transforms instead of replacing them.
+ */
+.pup-actor [data-p] {
+  transform-box: view-box;
+}
+.pup-actor [data-p="head"] {
+  transform-origin: 212px 104px;
+}
+.pup-actor [data-p="tail"] {
+  transform-origin: 84px 150px;
+}
+.pup-actor [data-p="earR"] {
+  transform-origin: 250px 82px;
+}
+
+/* Alive while sitting at a stop: blinks, gentle tail wag, the odd ear twitch */
+/* Blink (every pose rests with open eyes except bow, which rests with
+   happy closed eyes and is left alone) */
+.pup-actor[data-gait="pose"]:not([data-pose="bow"]) [data-p="open"] {
+  animation: 5.2s infinite tp-blink-open;
+}
+.pup-actor[data-gait="pose"]:not([data-pose="bow"]) [data-p="shut"] {
+  animation: 5.2s infinite tp-blink-shut;
+}
+.pup-actor[data-gait="pose"] [data-p="tail"] {
+  animation: 1.6s ease-in-out infinite alternate pup-wag;
+}
+.pup-actor[data-gait="pose"] [data-p="earR"] {
+  animation: 7.4s ease-in-out 2.2s infinite tp-ear-twitch;
+}
+
+@keyframes pup-wag {
+  from {
+    rotate: -8deg;
+  }
+  to {
+    rotate: 8deg;
+  }
+}
+
+/* Petting (pointer over Teddy): happy eyes, fast wag */
+.pup-actor[data-gait][data-pet] [data-p="open"] {
+  animation: none;
+  opacity: 0;
+}
+.pup-actor[data-gait][data-pet] [data-p="happy"] {
+  opacity: 1;
+}
+.pup-actor[data-gait][data-pet] [data-p="tail"] {
+  animation-duration: 0.22s;
+}
+
+/* Head tilt: "hmm?" (night sky stop, and now and then when idle) */
+.pup-actor[data-gait][data-gesture="tilt"] [data-p="head"] {
+  animation: pup-tilt 2.4s var(--ease-pounce);
+}
+@keyframes pup-tilt {
+  15%,
+  45% {
+    rotate: 13deg;
+  }
+  60%,
+  85% {
+    rotate: -10deg;
+  }
+}
+
+/* Yawn (in the basket): head back, eyes shut, mouth open */
+.pup-actor[data-gait][data-gesture="yawn"] [data-p="head"] {
+  animation: pup-yawn-head 1.8s ease-in-out;
+}
+.pup-actor[data-gait][data-gesture="yawn"] [data-p="open"],
+.pup-actor[data-gait][data-gesture="yawn"] [data-p="happy"],
+.pup-actor[data-gait][data-gesture="yawn"] [data-p="tongue"] {
+  animation: pup-hide-mid 1.8s ease-in-out;
+}
+.pup-actor[data-gait][data-gesture="yawn"] :is([data-p="shut"], [data-p="mouth"]) {
+  animation: pup-show-mid 1.8s ease-in-out;
+}
+@keyframes pup-yawn-head {
+  30%,
+  70% {
+    rotate: -8deg;
+    translate: 0 -4px;
+  }
+}
+@keyframes pup-hide-mid {
+  20%,
+  80% {
+    opacity: 0;
+  }
+}
+@keyframes pup-show-mid {
+  20%,
+  80% {
+    opacity: 1;
+  }
+}
+
+/* Jolt: a little squash-and-stretch wiggle */
+.pup-actor[data-gait][data-gesture="jolt"] .pup-actor__pose {
+  animation: pup-jolt 0.55s var(--ease-pounce);
+}
+@keyframes pup-jolt {
+  30% {
+    transform: scale(1.06, 0.92);
+  }
+  60% {
+    transform: scale(0.97, 1.05);
+  }
+}
+
+/* Jump (tap trick) */
+.pup-actor[data-gait][data-gesture="jump"] .pup-actor__pose {
+  animation: pup-jump 0.7s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+@keyframes pup-jump {
+  20% {
+    transform: scale(1.06, 0.9);
+  }
+  50% {
+    transform: translateY(-46px) scale(0.96, 1.06);
+  }
+  80% {
+    transform: scale(1.05, 0.93);
+  }
+}
+
+/* Sneeze (tap trick): wind up, then "achoo!" */
+.pup-actor[data-gait][data-gesture="sneeze"] [data-p="head"] {
+  animation: pup-sneeze 0.9s ease-in;
+}
+.pup-actor[data-gait][data-gesture="sneeze"] [data-p="open"] {
+  animation: pup-hide-mid 0.9s;
+}
+.pup-actor[data-gait][data-gesture="sneeze"] [data-p="shut"] {
+  animation: pup-show-mid 0.9s;
+}
+@keyframes pup-sneeze {
+  55% {
+    rotate: -9deg;
+    translate: 0 -5px;
+  }
+  70% {
+    rotate: 7deg;
+    translate: 0 6px;
+  }
+}
+
+/* Floating hearts (tap trick) */
+.pup-heart {
+  color: var(--color-toffee);
+  pointer-events: none;
+  text-shadow: 0 1px 0 var(--color-milk);
+  font-size: 1.35rem;
+  line-height: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
